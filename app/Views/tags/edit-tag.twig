@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+{{ form_open() }}
+
+<h2>{{ tag.tag_name }}</h2>
+
+<h5>Nouveau nom du tag</h5>
+<input name="tag_name" value="" type="text">
+
+<h5></h5>
+<input name="id_tag" value="{{ tag.id_tag }}" type="hidden">
+
+<button type="submit"> Submit </button>
+
+{{ form_close }} 
+
+{% endblock %}
