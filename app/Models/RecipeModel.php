@@ -10,4 +10,9 @@ class RecipeModel extends Model
         $query =$this->db->query('SELECT * FROM `view_api_recipes`');
         return$query->getResult();
     }
+
+    public function findCatForApi($cat){
+        $query =$this->db->query('SELECT * FROM `view_api_recipes` WHERE cat = "'.$cat.'"');
+        return $query->getResult();
+    }
 }
