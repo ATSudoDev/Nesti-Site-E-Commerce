@@ -8,7 +8,6 @@ use App\Entities\Tag;
 class TagsController extends BaseController
 {
 
-
   public function tags()
   {
     helper(['form']);
