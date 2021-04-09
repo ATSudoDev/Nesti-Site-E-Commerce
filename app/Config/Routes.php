@@ -57,7 +57,12 @@ $routes->post('/tag/delete', 'TagsController::deleteTag');
 // API
 $routes->get('/api',"ApiController::index");
 $routes->get('/api/recipes',"ApiController::recipes");
+$routes->get('/api/recipe/(:num)',"ApiController::recipe/$1");
+
 $routes->get('/api/category/(:alpha)',"ApiController::category/$1");
+
+$routes->get('/api/ingredients/(:num)',"ApiController::ingredients/$1");
+$routes->get('/api/steps/(:num)',"ApiController::steps/$1");
 
 
 /*

@@ -11,7 +11,7 @@
     <h1>API</h1>
     <ul>
         <li><a href="<?= site_url("api/recipes") ?>">Voir toutes les recettes</a></li>
-        <li><a href="<?= site_url("api/category/seazon") ?>">Voir toutes les recettes de saison</a></li>
+        <li><a href="<?= site_url("api/category/season") ?>">Voir toutes les recettes de saison</a></li>
     </ul>
 </body>
 
