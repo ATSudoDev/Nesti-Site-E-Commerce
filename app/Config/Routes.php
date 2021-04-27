@@ -18,8 +18,8 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
+$routes->setDefaultController('PagesController');
+$routes->setDefaultMethod('home');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
@@ -32,6 +32,21 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// ROUTES PAGES
+$routes->get('', 'PagesController::home');
+$routes->get('home', 'PagesController::home');
+$routes->get('recipes', 'PagesController::recipes');
+$routes->get('suggestions', 'PagesController::suggestions');
+$routes->get('market', 'PagesController::market');
+$routes->get('basket', 'PagesController::basket');
+$routes->get('user', 'PagesController::user');
+
+
+
+$routes->match(['get', 'post'], 'form', 'FormController::index');
+
+// ROUTES TAGS
 
 $routes->get('/tags', 'TagsController::tags');
 $routes->get('/tag/(:num)', 'TagsController::tag/$1');
@@ -46,9 +61,6 @@ $routes->get('/tag/search', 'TagsController::searchTag');
 $routes->get('/tag/create', 'TagsController::createTag');
 $routes->post('/tag/create','TagsController::insertTag');
 
-$routes->get('home', 'Pages::home');
-$routes->get('about', 'Pages::about');
-$routes->match(['get', 'post'], 'form', 'FormController::index');
 
 // Delete
 $routes->get('/tag/(:num)/delete', 'TagsController::deleteTag/$1');

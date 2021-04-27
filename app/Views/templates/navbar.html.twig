@@ -1,0 +1,36 @@
+<div id="navbar">
+
+	<div id="navbar-left">
+		<a class="{{loc=='home' ? "active" : "" }}" href="home">
+			<i class="fas fa-home"></i>
+			ACCUEIL</a>
+		<a class="{{loc=='recipes' ? "active" : "" }}" href="recipes">
+			<i class="fas fa-cookie-bite"></i>
+			RECETTES</a>
+		<a class="{{loc=='suggestions' ? "active" : "" }}" href="suggestions">
+			<i class="fas fa-heart"></i>
+			SUGGESTIONS</a>
+		<a class="{{loc=='market' ? "active" : "" }}" href="market">
+			<i class="fas fa-shopping-bag"></i>
+			MARCHÉ</a>
+	</div>
+
+
+	<div class="search">
+		<input type="text" class="searchArea" placeholder="Une recette ? Un ingrédient ? Un chef ?">
+		<button type="submit" id="searchButton">
+			<i class="fa fa-search"></i>
+		</button>
+	</div>
+
+
+	<div id="navbar-right">
+		<a href="basket">
+			<i class="fas fa-shopping-cart {{loc=='basket' ? "active-icons" : "" }}"></i>
+		</a>
+		<a href="user">
+			<i class="fas fa-user-circle {{loc=='user' ? "active-icons" : "" }}"></i>
+		</a>
+	</div>
+
+</div>

@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://localhost/www/codeingniter/';
+	public $baseURL = 'http://localhost/www/Nesti-Project-CodeIgniter/public/';
 
 	/**
 	 * --------------------------------------------------------------------------

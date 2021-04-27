@@ -1,0 +1,128 @@
+<style>
+	body, body >* {
+		font-family: 'Caveat', cursive;
+		font-size: 25px;
+		background-color: #F0F7EE;
+	}
+
+	{# ------------- NAVBAR ------------- #}
+
+	#navbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 1.4rem;
+	}
+
+	#logo {
+		background-image: "app\Assets\images\logo-Nesti.png";
+		background: cover;
+	}
+
+	#navbar-left {
+		width: 50%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	#navbar-left > a {
+		font-weight: 700;
+		background-color: #400406;
+		color: #F0F7EE;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 26px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
+
+	#navbar-left > a:hover {
+		background-color: #26413C;
+	}
+
+	#navbar-left > a i {
+		margin-right: 0.4rem;
+	}
+
+	#navbar-right {
+		display: flex;
+		justify-content: space-around;
+		width: 10%;
+		font-size: 45px;
+	}
+
+	#navbar-right> a i {
+		color: #400406;
+	}
+
+	#navbar-right> a i:hover {
+		color: #26413C;
+		cursor: pointer;
+	}
+
+	.search {
+		display: flex;
+		width: 30%;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+		border-radius: 12px;
+	}
+
+	.searchArea {
+		width: 100%;
+		border: 3px solid #400406;
+		border-right: none;
+		padding: 0.7rem;
+		height: 18px;
+		border-radius: 5px 0 0 5px;
+		outline: none;
+		color: #400406;
+		font-family: 'Caveat', cursive;
+		font-size: 25px;
+		font-weight: 600;
+		background-color: rgba(0, 0, 0, 0);
+	}
+
+	.searchArea:focus {
+		color:  #26413C;
+	}
+
+	#searchButton {
+		width: 80px;
+		border: 2px solid #400406;
+		background: #400406;
+		text-align: center;
+		color: #fff;
+		border-radius: 0 5px 5px 0;
+		cursor: pointer;
+		font-size: 25px;
+	}
+
+	#searchButton:hover {
+		background-color: #26413C;
+	}
+
+	.active {
+		background-color: #F58F29 !important;
+	}
+
+	.active-icons {
+		color: #F58F29 !important;
+	}
+
+	{# ------------- FOOTER ------------- #}
+
+	footer{
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		background-color: #400406;
+		color: #F0F7EE;
+		padding: 0.05rem;
+		border-radius : 5px;
+		font-size: 25px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
+
+
+</style>

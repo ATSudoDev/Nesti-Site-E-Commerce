@@ -9,8 +9,7 @@ class FormController extends Controller
     public function index()
     {
         helper(['form', 'url']);
-
-        // plusieurs consignes sont séparées pas un "pipe"        
+      
         $rules = [
             'username' => 'required',
             'password' => 'required|numeric|max_length[10]',

@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-
 <ul>
 {% for tag in tags %}
 {{ form_open(base_url('tag/delete')) }}
@@ -15,7 +13,5 @@
   {{ form_close() }} 
   {% endfor %}
 </ul>
-
-
 
 {% endblock %}

@@ -20,7 +20,6 @@ class ApiController extends BaseController
         die;
     }
 
-    
     public function recipe($id)
     {
         $model = new RecipeModel();
