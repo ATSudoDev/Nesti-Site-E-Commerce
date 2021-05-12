@@ -1,0 +1,92 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+	<div id="breadCrumb-details">
+		<a href="{{ base_url('/market')}}">
+			<p>Marché</p>
+		</a>
+		<p>
+			&nbsp >
+			{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}
+		</p>
+	</div>
+
+	<div id="article-details">
+		<div>
+			<div id="article-card-details">
+
+				<div id="article-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImage().name_image~"."~article.getImage().extension_image }}");'></div>
+
+				<div id="article-content-details">
+
+					<h2 id="article-title-details">
+						{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}
+					</h2>
+
+					<div id="article-info">
+						
+
+							{{ form_open(base_url(),{id:"form-add-article-cart"} )}}
+							<label for="input-quantity">Quantité</label>
+							<select id = "input-quantity" class="form-control" name="quantity">
+								<option selected>1</option>
+								{% for i in range(2,10) %}
+									<option>{{i}}</option>
+								{% endfor %}
+							</select>
+							{{ form_close() }}
+
+							<div id="article-price">
+								<p>{{article.getPrice().price_article}}</p>
+								<i class="fas fa-euro-sign" aria-hidden="true"></i>
+							</div>
+
+					
+
+					</div>
+
+					<button type="submit" id="btn-add-article">Ajouter au panier</button>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<div id="article-recipes">
+				<div id="article-recipes-title">
+					Recettes liées à cet article
+				</div>
+
+				<div id="article-card-recipes-content">
+
+					{% for recipe in recipes %}
+						<div class="article-recipe-card">
+							<div class="article-recipe-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.getImage().name_image~"."~recipe.getImage().extension_image }}");'></a>
+						</div>
+						<div class="article-recipe-card-body">
+							<h5 class="article-recipe-card-title">{{recipe.name_recipe}}</h5>
+							<div class="article-recipe-info">
+								<div class="article-recipe-info-element">
+									<i class="far fa-clock" aria-hidden="true"></i>
+									<p>{{recipe.time_recipe}}</p>
+								</div>
+								<div class="article-recipe-info-element">
+									<i class="fa fa-utensils" aria-hidden="true"></i>
+									<p>{{recipe.number_person_recipe}}</p>
+								</div>
+								<div class="article-recipe-info-element">
+									<i class="fas fa-dumbbell" aria-hidden="true"></i>
+									<p>{{recipe.difficulty_recipe}}</p>
+								</div>
+							</div>
+
+							<a href="{{ base_url('/recipe/'~recipe.id_recipe) }}">
+								<button class="recipe-btn-see">Voir la recette</button>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}
