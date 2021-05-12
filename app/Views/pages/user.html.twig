@@ -2,6 +2,250 @@
 
 {% block content %}
 
-<p>Salut ça va ? Je suis le user !</p>
+	<div id="account">
+		<div>
+			<div id="account-inscription">
+				<div id="connection-title">
+					Connection
+				</div>
 
+				<div id="connection-form-input">
+					<div class="form-group">
+						<label for="connection-firstname">Nom d'utilisateur</label>
+						<input type="text" class="form-control" id="connection-firstname" name="firstname">
+						<span class="text-danger" id="errorConnectionUsername">{{validation.getErrors()["firstname"]}}</span>
+					</div>
+					<div class="form-group">
+						<label for="connection-username">Mot de passe</label>
+						<input type="text" class="form-control" id="connection-username" name="username">
+						<span class="text-danger" id="errorConnectionPassword">{{validation.getErrors()["password"]}}</span>
+					</div>
+				</div>
+				<button type="submit" id="btn-connection">Connexion</button>
+			</div>
+		</div>
+
+		<div>
+			<div id="account-register">
+				<div id="register-title">
+					Inscription
+				</div>
+
+				{{ form_open('',{id :"form-register-user"})}}
+				<div id="register-form-input">
+					<div id="register-form-left">
+						<div>
+							<div class="form-group">
+								<label for="register-lastname">Nom</label>
+								<input type="text" class="form-control" id="register-lastname" name="lastname">
+								<span class="text-danger" id="errorRegisterLastname">{{validation.getErrors()["lastname"]}}</span>
+							</div>
+							<div class="form-group">
+								<label for="register-firstname">Prénom</label>
+								<input type="text" class="form-control" id="register-firstname" name="firstname">
+								<span class="text-danger" id="errorRegisterFirstname">{{validation.getErrors()["firstname"]}}</span>
+							</div>
+							<div class="form-group">
+								<label for="register-username">Nom d'utilisateur</label>
+								<input type="text" class="form-control" id="register-username" name="username">
+								<span class="text-danger" id="errorRegisterUsername">{{validation.getErrors()["username"]}}</span>
+							</div>
+							<div class="form-group">
+								<label for="register-email">Email</label>
+								<input type="email" class="form-control" id="register-email" name="email">
+								<span class="text-danger" id="errorRegisterEmail">{{validation.getErrors()["email"]}}</span>
+							</div>
+							<div class="form-group">
+								<label for="register-password">Mot de passe</label>
+								<input type="text" class="form-control" id="register-password" name="password">
+								<progress id="pwd-strength" value="0" max="5"></progress>
+							<span class="text-danger" id="errorRegisterPassword">{{validation.getErrors()["password"]}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="register-form-right">
+					<div class="form-group">
+						<label for="register-address1">Adresse</label>
+						<input type="text" class="form-control" id="register-address1" name="address1">
+						<span class="text-danger" id="errorRegisterAddress1">{{validation.getErrors()["address1"]}}</span>
+					</div>
+					<div class="form-group">
+						<label for="register-address2">Complément d'adresse</label>
+						<input type="text" class="form-control" id="register-address2" name="address2">
+						<span class="text-danger" id="errorRegisterAddress2">{{validation.getErrors()["address2"]}}</span>
+					</div>
+					<div class="form-group">
+						<label for="register-city">Ville</label>
+						<input type="text" class="form-control" id="register-city" name="city">
+						<span class="text-danger" id="errorRegisterCity">{{validation.getErrors()["city"]}}</span>
+					</div>
+					<div class="form-group">
+						<label for="register-postcode">Code postal</label>
+						<input type="text" class="form-control" id="register-postcode" name="postcode">
+						<span class="text-danger" id="errorRegisterPostcode">{{validation.getErrors()["postcode"]}}</span>
+					</div>
+					<div id="password-verification">
+						<div class="font-weight-bold">Votre mot de passe doit contenir :
+						</div>
+						<div id='password-conditions'>
+							<div id='pwd-length'>
+								• Au moins 12 caractères</div>
+							<div id='pwd-low-case'>
+								• Une minuscule</div>
+							<div id='pwd-upper-case'>
+								• Une majuscule</div>
+							<div id='pwd-digit'>
+								• Un chiffre</div>
+							<div id='pwd-special'>
+								• Un caractère spécial</div>
+						</div>
+					</div>
+				</div>
+				{{ form_close() }}
+			</div>
+			<button type="submit" id="btn-register">S'inscrire</button>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+
+		// PASSWORD STRENGHT
+
+let pwInput = document.getElementById("register-password");
+
+if (pwInput.value != '') {
+document.getElementById("pwd-strength").value = passwordStrength(pwInput.value);
+}
+
+pwInput.addEventListener('keyup', function () {
+document.getElementById("pwd-strength").value = passwordStrength(pwInput.value);
+});
+
+// Checks conditions password
+function passwordStrength(pw) {
+
+changeColorConditions(pw);
+
+return(/.{12,}/.test(pw) + /* at least 12 characters */
+/[a-z]/.test(pw) + /* a lower letter */
+/[A-Z]/.test(pw) + /* a upper letter */
+/\d/.test(pw) + /* a digit */
+/[^A-Za-z0-9]/.test(pw) /* a special character */
+)
+}
+
+// Changes the color of the conditions depending of the input password
+function changeColorConditions(pw) {
+
+if (/.{12,}/.test(pw) == true) {
+document.getElementById("pwd-length").style.color = '#F0F7EE'
+} else {
+document.getElementById("pwd-length").style.color = '#F58F29'
+}
+
+
+if (/[a-z]/.test(pw) == true) {
+document.getElementById("pwd-low-case").style.color = '#F0F7EE'
+} else {
+document.getElementById("pwd-low-case").style.color = '#F58F29'
+}
+
+
+if (/[A-Z]/.test(pw) == true) {
+document.getElementById("pwd-upper-case").style.color = '#F0F7EE'
+} else {
+document.getElementById("pwd-upper-case").style.color = '#F58F29'
+}
+
+
+if (/\d/.test(pw) == true) {
+document.getElementById("pwd-digit").style.color = '#F0F7EE'
+} else {
+document.getElementById("pwd-digit").style.color = '#F58F29'
+}
+
+
+if (/[^A-Za-z0-9]/.test(pw) == true) {
+document.getElementById("pwd-special").style.color = '#F0F7EE'
+} else {
+document.getElementById("pwd-special").style.color = '#F58F29'
+}
+}
+
+// AJAX SEND FORM REGISTER
+
+const csrf = document.querySelector('input[name="csrf_nesti"]');
+
+buttonRegister = document.querySelector("#btn-register");
+
+buttonRegister.addEventListener('click', (function (e) {
+
+formRegister = document.querySelector("#form-register-user");
+console.log(formRegister);
+
+event.preventDefault();
+
+addUser(formRegister).then((response) => {
+if (response) {
+if (response.success && response.csrf_token) {
+
+window.location = base_url('/user');
+
+} else {
+console.log(response.validation);
+document.querySelector("#errorRegisterLastname").innerHTML = response.validation['lastname'] || "";
+document.querySelector("#errorRegisterFirstname").innerHTML = response.validation['firstname'] || "";
+document.querySelector("#errorRegisterEmail").innerHTML = response.validation['email'] || "";
+document.querySelector("#errorRegisterUsername").innerHTML = response.validation['username'] || "";
+document.querySelector("#errorRegisterPassword").innerHTML = response.validation['password'] || "";
+document.querySelector("#errorRegisterAddress1").innerHTML = response.validation['address1'] || "";
+document.querySelector("#errorRegisterAddress2").innerHTML = response.validation['address2'] || "";
+document.querySelector("#errorRegisterCity").innerHTML = response.validation['city'] || "";
+document.querySelector("#errorRegisterPostcode").innerHTML = response.validation['postcode'] || "";
+}
+
+// Refresh CSRF
+csrf.setAttribute('value', response.csrf_token);
+}
+});
+
+}))
+
+
+
+/**
+* Ajax request to add a user
+* @param obj form
+* @returns mixed
+*/
+async function addUser(obj) {
+
+var myHeaders = new Headers();
+
+let formData = new FormData(obj);;
+
+var myInit = {
+method: 'POST',
+headers: myHeaders,
+mode: 'cors',
+cache: 'default',
+body: formData
+};
+
+let response = await fetch('{{ base_url() }}/user/register', myInit);
+try {
+if (response.ok) {
+return await response.json();
+} else {
+return false;
+}
+} catch (e) {
+console.error(e.message);
+}
+}
+
+	</script>
 {% endblock %}
