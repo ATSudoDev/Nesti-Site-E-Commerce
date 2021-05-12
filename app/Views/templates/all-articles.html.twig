@@ -1,0 +1,20 @@
+<div class="articles-cards">
+	{% for article in articles %}
+		<div class="article-card">
+			<div class="article-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImage().name_image~"."~article.getImage().extension_image }}");'></a>
+		</div>
+		<div class="article-card-body">
+			<h5 class="article-card-title">{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}</h5>
+			<div class="article-info">
+				<div class="article-info-element">
+					<p>{{article.getPrice().price_article}}</p>
+					<i class="fas fa-euro-sign" aria-hidden="true"></i>
+				</div>
+			</div>
+
+			<a href="{{ base_url('/article/'~article.id_article) }}">
+				<button class="article-btn-see">Voir l'article</button>
+			</a>
+		</div>
+	</div>
+{% endfor %}</div>
