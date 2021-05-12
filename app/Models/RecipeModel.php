@@ -7,11 +7,14 @@ use CodeIgniter\Model;
 class RecipeModel extends Model
 {
 
-    protected $table = 'recipes';
+    protected $table = 'recipes'; // nom de la table
     protected $primaryKey = 'id_recipe';
-    protected $allowedFields = ['id_recipe', 'name_recipe', 'difficulty_recipe', 'numberperson_recipe', 'state_recipe', 'time_recipe', 'fk_id_image', 'fk_id_chief']; 
-    protected $returnType = 'App\Entities\Recipe';
- 
+    protected $allowedFields = ['name_recipe', 'difficulty_recipe', 'numberperson_recipe', 'state_recipe', 'time_recipe', 'fk_id_image', 'fk_id_chief']; // Nom des colonnes autorisées
+    protected $returnType = 'App\Entities\Recipe'; // Type de retour
+    protected $useTimestamps = false; // Utilisation du timestamps
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation     = false;
 
     public function findAllForApi()
     {
