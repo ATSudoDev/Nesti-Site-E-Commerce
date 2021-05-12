@@ -1,0 +1,13 @@
+<div id="recipes-tags">
+	<div id="tags-title">
+		Filtrer par catégories
+	</div>
+
+	<div id="tags-content">
+		{% for tag in tags %}
+		<a href="{{ base_url('/recipes/tag/'~tag.id_tag ) }}">
+				<button class="recipe-btn-tag {{idTag == tag.id_tag ? "active" : "" }}">{{ tag.tag_name }}</button>
+			</a>
+		{% endfor %}
+	</div>
+</div>
