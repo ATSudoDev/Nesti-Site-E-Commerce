@@ -2,22 +2,47 @@
 namespace App\Entities;
 use CodeIgniter\Entity;
 
+//MODELS
+use App\Models\ImageModel;
+use App\Models\GradeModel;
 
 class Recipe extends Entity
 {
-    protected $attributes = [
-        'id_recipe' => null,
-        'date_creation_recipe' => null,        
-        'name_recipe' => null,
-        'difficulty_recipe' => null,
-        'number_person_recipe' => null,
-        'state_recipe' => null,
-        'time_recipe' => null,
-        'fk_id_image' => null,
-        'fk_id_chief' => null,
-        'ingredients' => null,
-        'steps' => null,
-        
-    ];
-   
+
+    public function getImage()
+    {
+        $imageModel = new ImageModel();
+        $image = $imageModel->find($this->fk_id_image);
+        return $image;
+    }
+
+    public function getNumberGrade()
+    {
+        $gradeModel = new GradeModel();
+        $numberGrade = $gradeModel->where('fk_id_recipe', $this->id_recipe)->findAll();
+
+        return count($numberGrade);
+    }
+
+    public function getAverageGrade()
+    {
+      
+        $gradeModel = new GradeModel();
+        $grades = $gradeModel->where('fk_id_recipe', $this->id_recipe)->findAll();
+
+        $numberGrades = 0;
+        $totalGrades = 0;
+        foreach ($grades as $grade) {
+            $totalGrades += $grade->grade_out_of_5;
+            $numberGrades++;
+        }
+
+        if ( $numberGrades != 0){
+            $averageGrade = ($totalGrades /  $numberGrades);
+        } else {
+            $averageGrade = 0;
+        }
+        return $averageGrade;
+    }
+
 }

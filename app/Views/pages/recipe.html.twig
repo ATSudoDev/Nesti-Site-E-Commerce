@@ -1,0 +1,127 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+	<div id="breadCrumb-details-article">
+		<a href="{{ base_url('/recipes')}}">
+			<p>Recettes</p>
+		</a>
+		<p>
+			&nbsp >
+			{{recipe.name_recipe}}
+		</p>
+	</div>
+
+	<div id="recipe-details">
+		<div>
+			<div id="recipe-card-details">
+
+				<div id="recipe-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.getImage().name_image~"."~recipe.getImage().extension_image }}");'></div>
+
+				<div id="recipe-content-details">
+
+					<h2 id="recipe-title-details">
+						{{recipe.name_recipe}}
+					</h2>
+
+					<div id="recipe-info">
+						<div class="recipe-info-element">
+							<i class="far fa-clock" aria-hidden="true"></i>
+							<p>{{recipe.time_recipe}}</p>
+						</div>
+						<div class="recipe-info-element">
+							<i class="fa fa-utensils" aria-hidden="true"></i>
+							<p>{{recipe.number_person_recipe}}</p>
+						</div>
+						<div class="recipe-info-element">
+							<i class="fa fa-fire" aria-hidden="true"></i>
+							<p>{{recipe.difficulty_recipe}}</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="ingredients-recipe">
+					<div id="ingredients-recipe-title">
+						Ingredients
+					</div>
+					<div id="ingredients-recipe-list">
+						{% for ingredientRecipe in ingredientsRecipe %}
+							<div class="recipe-ingredient">
+								{{ingredientRecipe.quantity_ingredient~" "~ingredientRecipe.getMeasureUnit().name_measure_unit~" de "~ingredientRecipe.getProduct().name_product}}
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<div id="recipe-card-preparation">
+				<div id="recipe-card-preparation-title">
+					Préparation
+				</div>
+
+				<div id="recipe-card-steps">
+					{% for paragraph in paragraphs %}
+						<div class="recipe-steps">
+							<div class="recipe-step-order">Étape
+								{{paragraph.order_paragraph}}</div>
+							<div class="recipe-step-content">{{paragraph.content_paragraph}}</div>
+						</div>
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="recipe-comments">
+		<div id="recipe-comments-title">
+			Commentaires
+		</div>
+
+		<div id="recipe-comments-content">
+
+			{% for comment in comments %}
+
+				<div class="recipe-comment">
+					<div class="recipe-comment-header">
+						<div class="recipe-comment-title">
+							{{comment.title_comment}}
+						</div>
+						<div class="recipe-comment-user">
+							par
+							{{comment.getUser().username_user}}
+						</div>
+						<div class="recipe-comment-date">
+							({{comment.date_creation_comment|date("m/d/Y H:m:s")}})
+						</div>
+					</div>
+
+					<div class="recipe-comment-content">{{comment.content_comment}}</div>
+				</div>
+			{% endfor %}
+
+		</div>
+
+		<div id="write-comments">
+			<div id="write-comments-title">
+				Écrire un commentaire
+			</div>
+
+			<div id="form-send-comment">
+				{{ form_open(base_url(), {id :"form-write-comment"})}}
+				<textarea lang="fr" id="write-comment-title" rows="1" max-length="50" style="resize: none;" name="title" placeholder="Titre du commentaire" required></textarea>
+				<textarea id="write-comment-area" rows="5" max-length="50" style="resize: none;" name="comment" placeholder="Écrivez votre commentaire ici !" required></textarea>
+				<button type="submit" id="btn-send-comment">Envoyer</button>
+				{{ form_close() }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+
+	</script>
+{% endblock %}
