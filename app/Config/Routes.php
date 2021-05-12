@@ -36,35 +36,27 @@ $routes->setAutoRoute(true);
 // ROUTES PAGES
 $routes->get('', 'PagesController::home');
 $routes->get('home', 'PagesController::home');
-$routes->get('recipes', 'PagesController::recipes');
 $routes->get('suggestions', 'PagesController::suggestions');
-$routes->get('market', 'PagesController::market');
 $routes->get('basket', 'PagesController::basket');
-$routes->get('user', 'PagesController::user');
 
+// ARTICLES
+$routes->get('market', 'MarketController::market');
+$routes->get('article/(:num)', 'MarketController::article/$1');
 
-
-$routes->match(['get', 'post'], 'form', 'FormController::index');
+// RECIPES
+$routes->get('recipes', 'RecipesController::recipes');
+$routes->get('recipes/tag/(:num)', 'TagsController::tag/$1');
+$routes->get('recipe/(:num)', 'RecipesController::recipe/$1');
 
 // ROUTES TAGS
 
 $routes->get('/tags', 'TagsController::tags');
 $routes->get('/tag/(:num)', 'TagsController::tag/$1');
 
-// Edit
-$routes->get('/tag/(:num)/edit', 'TagsController::editTag/$1');
-$routes->post('/tag/(:num)/edit','TagsController::updateTag');
+// USER
+$routes->get('user', 'PagesController::user');
+$routes->post('user/register', 'UserController::register');
 
-$routes->get('/tag/search', 'TagsController::searchTag');
-
-// Create
-$routes->get('/tag/create', 'TagsController::createTag');
-$routes->post('/tag/create','TagsController::insertTag');
-
-
-// Delete
-$routes->get('/tag/(:num)/delete', 'TagsController::deleteTag/$1');
-$routes->post('/tag/delete', 'TagsController::deleteTag');
 
 // API
 $routes->get('/api',"ApiController::index");

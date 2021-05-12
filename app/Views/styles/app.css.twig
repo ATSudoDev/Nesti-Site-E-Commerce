@@ -1,11 +1,14 @@
 <style>
-	body, body >* {
+	body,
+	body > * {
 		font-family: 'Caveat', cursive;
 		font-size: 25px;
 		background-color: #F0F7EE;
 	}
 
-	{# ------------- NAVBAR ------------- #}
+	{
+		# ------------- NAVBAR ------------- #
+	}
 
 	#navbar {
 		display: flex;
@@ -52,7 +55,7 @@
 		font-size: 45px;
 	}
 
-	#navbar-right> a i {
+	#navbar-right > a i {
 		color: #400406;
 	}
 
@@ -84,7 +87,7 @@
 	}
 
 	.searchArea:focus {
-		color:  #26413C;
+		color: #26413C;
 	}
 
 	#searchButton {
@@ -110,19 +113,988 @@
 		color: #F58F29 !important;
 	}
 
-	{# ------------- FOOTER ------------- #}
+	{
+		# ------------ TAGS ------------- #
+	}
 
-	footer{
+	#recipes-tags {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0 10rem;
+		flex-wrap: wrap;
+
+	}
+
+	#tags-title {
+		display: flex;
+		color: #F58F29;
+		margin-bottom: 0.6rem;
+	}
+
+	#tags-content {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	#tags-content .form-check input {
+		border-radius: 8px;
+	}
+
+	#tags-content a > button {
+		font-weight: 700;
+		background-color: #26413C;
+		color: #F0F7EE;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 18px;
+		font-family: 'Caveat';
+		border: 1px solid #FFF;
+		cursor: pointer;
+		box-shadow: 0 0 10px #666;
+	}
+
+	#tags-content a > button:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	{
+		# ------------ RECIPES ------------- #
+	}
+
+	.recipes-cards {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		width: 90%;
+		margin: 1.4rem auto;
+	}
+
+	.recipe-card {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 350px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	.recipe-card:hover {
+		transform: scale(1.01);
+		transition: 0.2s;
+	}
+
+	.recipe-card .recipe-img {
+		background-size: cover;
+		background-position: center;
+		width: 300px;
+		height: 250px;
+		margin-top: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	.recipe-card .recipe-card-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 0.4rem;
+	}
+
+	.recipe-card .recipe-card-grade {
+		margin-top: -0.6rem;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.recipe-card .recipe-card-grade i {
+		color: #F58F29;
+	}
+
+	.recipe-card .recipes-grade-out-of {
+		display: flex;
+		align-items: center;
+		color: #F58F29;
+		font-size: 30px;
+		margin-left: 0.4rem;
+	}
+
+
+	.recipe-card .recipe-card-title {
+		font-size: 30px;
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	.recipe-card .recipe-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		width: 80%;
+	}
+
+	.recipe-card .recipe-info-element {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.recipe-card .recipe-info-element > * {
+		margin: 0;
+	}
+
+	.recipe-card .recipe-info-element > p {
+		font-size: 25px;
+		color: #F0F7EE;
+	}
+
+	.recipe-card .recipe-info-element > i {
+		margin-right: 0.4rem;
+		color: #F58F29;
+	}
+
+	.recipe-btn-see {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 20px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		margin-bottom: 0.6rem;
+	}
+
+	.recipe-btn-see:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	{
+		# ------------ PAGE INFO RECIPE ------------- #
+	}
+
+	#breadCrumb-details {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-left: 3rem;
+	}
+
+	#breadCrumb-details > *,
+	#breadCrumb-details a p {
+		margin: 0;
+		text-decoration: none;
+		text-decoration-color: none;
+	}
+
+	#breadCrumb-details a {
+		color: #F58F29;
+		cursor: pointer;
+	}
+
+	#recipe-details {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-left: 10rem;
+		margin-right: 10rem;
+	}
+
+
+	#recipe-card-details {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 550px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#recipe-content-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+
+	#recipe-img-details {
+		background-size: cover;
+		background-position: center;
+		width: 500px;
+		height: 400px;
+		margin-top: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	#recipe-title-details {
+		font-size: 35px;
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	#recipe-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		width: 70%;
+	}
+
+	#recipe-card-details .recipe-info-element {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	#recipe-card-details .recipe-info-element > i {
+		margin-right: 0.5rem;
+		color: #F58F29;
+	}
+
+	#recipe-card-details .recipe-info-element > p {
+		font-size: 30px;
+		color: #F0F7EE;
+		margin: 0;
+	}
+
+	#ingredients-recipe {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 90%;
+		margin-bottom: 1rem;
+	}
+
+	#ingredients-recipe-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.2rem;
+	}
+
+	#ingredients-recipe-list {
+		color: #F0F7EE;
+		margin-left: 2rem;
+	}
+
+	#recipe-card-preparation {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 850px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#recipe-card-preparation-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-top: 0.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	#recipe-card-steps {
+		margin-right: 2rem;
+		margin-left: 2rem;
+	}
+
+	.recipe-steps {
+		margin-bottom: 1.4rem;
+	}
+
+	.recipe-step-order {
+		color: #F58F29;
+		font-size: 30px;
+	}
+
+	.recipe-step-content {
+		color: #F0F7EE;
+	}
+
+	.recipe-comments {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+		margin-left: 10rem;
+		margin-right: 10rem;
+		padding: 1rem;
+	}
+
+	#recipe-comments-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.4rem;
+	}
+
+	#recipe-comments-content {
+		margin-right: 2.6rem;
+		margin-left: 2.6rem;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.recipe-comment {
+		width: 625px;
+		background-color: #F0F7EE;
+		border-radius: 8px;
+		padding: 0.4rem 1.2rem;
+		margin-bottom: 1rem;
+	}
+
+	.recipe-comment-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 0.4rem;
+	}
+
+	.recipe-comment-user {
+		margin-right: 0.4rem;
+		color: #F58F29;
+		font-size: 20px;
+	}
+
+	.recipe-comment-date {
+		color: #F58F29;
+		font-size: 20px;
+	}
+
+	.recipe-comment-title {
+		color: #26413C;
+		margin-right: 0.4rem;
+	}
+
+	.recipe-comment-content {
+		color: #26413C;
+		margin-left: 1rem
+	}
+
+	#write-comments {
+		margin-left: 2.6rem;
+		display: flex;
+		flex-direction: column;
+		width: 650px;
+	}
+
+	#write-comments-title {
+		color: #F58F29;
+		margin-bottom: 0.4rem;
+	}
+
+	#form-write-comment {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#write-comment-title {
+		width: 50%;
+		border-radius: 8px;
+		margin-bottom: 0.4rem;
+		cursor: pointer;
+		font-family: 'Caveat';
+		font-size: 25px;
+		border: 1px solid #F0F7EE;
+		color: #26413C;
+		background-color: #F0F7EE;
+	}
+
+	#write-comment-title:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	#write-comment-area {
+		border-radius: 8px;
+		cursor: pointer;
+		font-family: 'Caveat';
+		font-size: 25px;
+		margin-bottom: 0.4rem;
+		border: 1px solid #F0F7EE;
+		color: #26413C;
+		background-color: #F0F7EE;
+	}
+
+	#write-comment-area:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	#btn-send-comment {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 25px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		width: 20%;
+	}
+
+	#btn-send-comment:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	{
+		# ------------- MARKET ------------- #
+	}
+
+	.articles-cards {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		width: 90%;
+		margin: 2rem auto;
+	}
+
+	.article-card {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 350px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	.article-card:hover {
+		transform: scale(1.01);
+		transition: 0.2s;
+	}
+
+	.article-card .article-img {
+		background-size: cover;
+		background-position: center;
+		width: 300px;
+		height: 250px;
+		margin-top: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	.article-card .article-card-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 0.8rem;
+	}
+
+	.article-card .article-card-title {
+		font-size: 30px;
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	.article-card .article-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		width: 80%;
+		margin-bottom: 0.4rem;
+	}
+
+	.article-card .article-info-element {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.article-card .article-info-element > * {
+		margin: 0;
+	}
+
+	.article-card .article-info-element > p {
+		font-size: 30px;
+		color: #F0F7EE;
+		margin-right: 0.4rem;
+	}
+
+	.article-card .article-info-element > i {
+		font-size: 20px;
+		margin-right: 0.4rem;
+		color: #F58F29;
+	}
+
+	.article-card .article-card-body a > button {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 20px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+	}
+
+	.article-card .article-card-body a > button:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	#breadCrumb-details {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-left: 3rem;
+	}
+
+	{
+		# ------------- PAGE INFO ARTICLE ------------- #
+	}
+
+	#breadCrumb-details-article > *,
+	#breadCrumb-details-article a p {
+		margin: 0;
+		text-decoration: none;
+		text-decoration-color: none;
+	}
+
+	#breadCrumb-details-article a {
+		color: #F58F29;
+		cursor: pointer;
+	}
+
+	#article-details {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-left: 10rem;
+		margin-right: 10rem;
+	}
+
+
+	#article-card-details {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 550px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#article-content-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+
+	#article-img-details {
+		background-size: cover;
+		background-position: center;
+		width: 500px;
+		height: 400px;
+		margin-top: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	#article-title-details {
+		font-size: 35px;
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	#article-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		justify-content: space-around;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		width: 70%;
+	}
+
+	#article-price > i {
+		margin-right: 0.5rem;
+		color: #F58F29;
+	}
+
+	#article-price > p {
+		font-size: 30px;
+		color: #F0F7EE;
+		margin: 0 0.6rem 0 0;
+	}
+
+	#article-recipes {
+		border: 1px solid #F0F7EE;
+		width: 850px;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 2rem;
+	}
+
+	#article-recipes-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.6rem;
+	}
+
+	#article-card-recipes-content {}
+
+	#form-add-article-cart label {
+		margin-right: 0.5rem;
+		color: #F58F29;
+		font-size: 30px;
+	}
+
+	#input-quantity {
+		font-size: 20px;
+		font-family: 'Caveat';
+	}
+
+	#article-price {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0;
+	}
+
+	#btn-add-article {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 25px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		width: 35%;
+		padding: 0.6rem 0;
+		margin-top: 0.8rem;
+	}
+
+	#btn-add-article:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	.article-recipe-card {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	.article-recipe-img {
+		background-size: cover;
+		background-position: center;
+		width: 175px;
+		height: 125px;
+		margin-top: 0.8rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	.article-recipe-card-title {
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	.article-recipe-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+		width: 80%;
+		margin-bottom: 0.4rem;
+	}
+
+	.article-recipe-card-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	.article-recipe-info-element {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.article-recipe-info-element > i {
+		margin-right: 0.2rem;
+		color: #F58F29;
+		font-size: 15px;
+	}
+
+	.article-recipe-info-element > p {
+		font-size: 20px;
+		color: #F0F7EE;
+		margin: 0;
+	}
+
+	.article-recipe-card a > button {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 20px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+	}
+
+	.article-recipe-card a > button:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	{
+		# ------------- ACCOUNT ------------- #
+	}
+
+	#account {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-left: 10rem;
+		margin-right: 10rem;
+	}
+
+	#account-inscription {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 550px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#connection-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-top: 0.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	#connection-form-input .form-group {
+		display: flex;
+		flex-direction: column;
+		color: #F0F7EE;
+		margin-bottom: 1rem;
+	}
+
+	#btn-connection {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 30px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		margin-bottom: 1rem;
+	}
+
+	#btn-connection:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	#account-register {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 850px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#register-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-top: 0.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	#register-form-input {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	#form-register-user {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 80%;
+	}
+
+	#register-form-left {
+		width: 45%
+	}
+
+	#password-verification {
+		font-size: 20px;
+		line-height: 1.2rem;
+		color: #F58F29;
+	}
+
+	#pwd-strength {
+		height: 10px;
+		background-color: #F0F7EE;
+	}
+
+	progress::-moz-progress-bar {
+		background: #F58F29;
+	}
+
+	#register-form-right {
+		width: 45%
+	}
+
+	#register-form-input .form-group {
+		display: flex;
+		flex-direction: column;
+		color: #F0F7EE;
+		margin-bottom: 0.8rem;
+	}
+
+	#register-form-input .form-group span {
+		color: #F58F29;
+		font-size: 20px;
+		margin-left: 0.4rem;
+	}
+
+	#btn-register {
+		font-weight: 700;
+		background-color: #F0F7EE;
+		color: #26413C;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 30px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		margin-bottom: 1rem;
+		width: 26%;
+	}
+
+	#btn-register:hover {
+		background-color: #F58F29;
+		color: #400406;
+		border: 1px solid #F0F7EE;
+	}
+
+	.form-group input {
+		font-family: 'Caveat', cursive;
+		font-size: 25px;
+		border-radius: 8px;
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+		cursor: pointer;
+		border: 1px solid #F0F7EE;
+	}
+
+	.form-group input:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+
+	{
+		# ------------- FOOTER ------------- #
+	}
+
+	footer {
 		display: flex;
 		justify-content: center;
 		text-align: center;
 		background-color: #400406;
 		color: #F0F7EE;
 		padding: 0.05rem;
-		border-radius : 5px;
+		border-radius: 5px;
 		font-size: 25px;
 		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	}
 
-
+	footer p {
+		margin: 0;
+	}
 </style>
