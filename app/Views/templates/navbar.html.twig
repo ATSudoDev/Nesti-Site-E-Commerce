@@ -1,20 +1,19 @@
 <div id="navbar">
 
 	<div id="navbar-left">
-		<a class="{{loc=='home' ? "active" : "" }}" href="home">
+		<a class="{{loc=='home' ? "active" : "" }}" href="{{base_url('/home')}}">
 			<i class="fas fa-home"></i>
 			ACCUEIL</a>
-		<a class="{{loc=='recipes' ? "active" : "" }}" href="recipes">
+		<a class="{{loc=='recipes' ? "active" : "" }}" href="{{base_url('/recipes')}}">
 			<i class="fas fa-cookie-bite"></i>
 			RECETTES</a>
-		<a class="{{loc=='suggestions' ? "active" : "" }}" href="suggestions">
+		<a class="{{loc=='suggestions' ? "active" : "" }}" href="{{base_url('/suggestions')}}">
 			<i class="fas fa-heart"></i>
 			SUGGESTIONS</a>
-		<a class="{{loc=='market' ? "active" : "" }}" href="market">
+		<a class="{{loc=='market' ? "active" : "" }}" href="{{base_url('/market')}}">
 			<i class="fas fa-shopping-bag"></i>
 			MARCHÉ</a>
 	</div>
-
 
 	<div class="search">
 		<input type="text" class="searchArea" placeholder="Une recette ? Un ingrédient ? Un chef ?">
@@ -23,12 +22,11 @@
 		</button>
 	</div>
 
-
 	<div id="navbar-right">
-		<a href="basket">
+		<a href="{{base_url('/basket')}}">
 			<i class="fas fa-shopping-cart {{loc=='basket' ? "active-icons" : "" }}"></i>
 		</a>
-		<a href="user">
+		<a href="{{base_url('/user')}}">
 			<i class="fas fa-user-circle {{loc=='user' ? "active-icons" : "" }}"></i>
 		</a>
 	</div>
