@@ -188,11 +188,6 @@
 		background-color: #26413C;
 	}
 
-	.recipe-card:hover {
-		transform: scale(1.01);
-		transition: 0.2s;
-	}
-
 	.recipe-card .recipe-img {
 		background-size: cover;
 		background-position: center;
@@ -300,6 +295,7 @@
 		background-color: #F58F29;
 		color: #400406;
 		border: 1px solid #F0F7EE;
+		transform: scale(1.02);
 	}
 
 	#give-grade-recipe-stars {
@@ -676,11 +672,6 @@
 		background-color: #26413C;
 	}
 
-	.article-card:hover {
-		transform: scale(1.01);
-		transition: 0.2s;
-	}
-
 	.article-card .article-img {
 		background-size: cover;
 		background-position: center;
@@ -708,34 +699,32 @@
 	}
 
 	.article-card .article-info {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
 		padding-right: 0.5rem;
 		padding-left: 0.5rem;
 		width: 80%;
 		margin-bottom: 0.4rem;
 	}
 
-	.article-card .article-info-element {
+	.article-card .article-info-element,
+	.article-card .article-info-element > * {
+		margin: 0;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		justify-content: space-around;
+		height: 50px;
 	}
 
-	.article-card .article-info-element > * {
-		margin: 0;
-	}
-
-	.article-card .article-info-element > p {
+	.article-card .article-info-element .price-info > p,
+	.article-card .article-info-element .stock-info > p {
 		font-size: 30px;
 		color: #F0F7EE;
-		margin-right: 0.4rem;
+		margin-right: 0.6rem;
 	}
 
-	.article-card .article-info-element > i {
+	.article-card .article-info-element .price-info > i,
+	.article-card .article-info-element .stock-info > i {
 		font-size: 20px;
-		margin-right: 0.4rem;
 		color: #F58F29;
 	}
 
@@ -757,6 +746,7 @@
 		background-color: #F58F29;
 		color: #400406;
 		border: 1px solid #F0F7EE;
+		transform: scale(1.02);
 	}
 
 	#breadCrumb-details {
@@ -990,6 +980,19 @@
 		border: 1px solid #F0F7EE;
 	}
 
+	.out-of-stock {
+		position: absolute;
+		top: 15rem;
+		color: #26413C;
+		background: white;
+		font-weight: bolder;
+		width: 18.8rem;
+		text-align: center;
+		font-size: 35px;
+		opacity: 0.75;
+	}
+
+
 	{
 		# ------------- ACCOUNT ------------- #
 	}
@@ -1010,7 +1013,8 @@
 		margin-right: 10rem;
 	}
 
-	#account-connected, #account-connection {
+	#account-connected,
+	#account-connection {
 		border: 1px solid #F0F7EE;
 		border-radius: 8px;
 		width: 550px;

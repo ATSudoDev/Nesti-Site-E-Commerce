@@ -7,8 +7,14 @@
 			<h5 class="article-card-title">{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}</h5>
 			<div class="article-info">
 				<div class="article-info-element">
-					<p>{{article.getPrice().price_article}}</p>
-					<i class="fas fa-euro-sign" aria-hidden="true"></i>
+					<div class="price-info">
+						<p>{{article.getPrice().price_article}}</p>
+						<i class="fas fa-euro-sign" aria-hidden="true"></i>
+					</div>
+					<div class="stock-info">
+						<p class="stock" data-stock ="{{article.getStock()}}">{{article.getStock()}}</p>
+						<i class="fas fa-box"></i>
+					</div>
 				</div>
 			</div>
 
@@ -18,3 +24,35 @@
 		</div>
 	</div>
 {% endfor %}</div>
+
+{% block script %}
+	<script>
+
+	allStocks = document.querySelectorAll(".stock");
+
+	console.log(allStocks);
+
+	allStocks.forEach(element => {
+		stock = element.getAttribute('data-stock');
+
+		if (stock <= 0) {
+			card = (element.parentNode.parentNode.parentNode.parentNode.parentNode);
+			card.style.backgroundColor="#400406";
+
+			var outOfStock = document.createElement("div");
+			outOfStock.className = "out-of-stock";
+			outOfStock.innerHTML = "Épuisé";
+			card.appendChild(outOfStock);
+		}
+	}
+
+	);
+
+
+	
+	
+
+	</script>
+
+	{% endblock %}
+

@@ -25,24 +25,29 @@
 					</h2>
 
 					<div id="article-info">
-						
 
-							{{ form_open(base_url(),{id:"form-add-article-cart"} )}}
-							<label for="input-quantity">Quantité</label>
-							<select id = "input-quantity" class="form-control" name="quantity">
-								<option selected>1</option>
-								{% for i in range(2,10) %}
+
+						{{ form_open(base_url(),{id:"form-add-article-cart"} )}}
+						<label for="input-quantity">Quantité</label>
+						{% if article.getStock() > 0 %}
+							<select id="input-quantity" class="form-control" name="quantity">
+								{% for i in range(1, article.getStock()) %}
 									<option>{{i}}</option>
 								{% endfor %}
 							</select>
-							{{ form_close() }}
+						{% else %}
+						<select id="input-quantity" class="form-control" name="quantity" disabled>
+							<option disabled>0</option>
+							</select>	
+						{% endif %}
 
-							<div id="article-price">
-								<p>{{article.getPrice().price_article}}</p>
-								<i class="fas fa-euro-sign" aria-hidden="true"></i>
-							</div>
+						{{ form_close() }}
 
-					
+						<div id="article-price">
+							<p>{{article.getPrice().price_article}}</p>
+							<i class="fas fa-euro-sign" aria-hidden="true"></i>
+						</div>
+
 
 					</div>
 

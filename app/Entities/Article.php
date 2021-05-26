@@ -9,6 +9,8 @@ use App\Models\ImageModel;
 use App\Models\PriceArticleModel;
 use App\Models\ProductModel;
 use App\Models\MeasureUnitModel;
+use App\Models\PackageModel;
+use App\Models\CommandLineModel;
 
 class Article extends Entity
 {
@@ -39,4 +41,29 @@ class Article extends Entity
         $measureUnit = $measureUnitModel->find($this->fk_id_measure_unit);
         return $measureUnit;
     }
+
+    public function getStock()
+    {
+        $packageModel = new PackageModel();
+        $packages =  $packageModel->where('fk_id_article', $this->id_article)->findAll();
+       
+        $numberBought = 0;
+        foreach ($packages as $package) {
+            $numberBought += $package->quantity_bought_package;
+        }
+
+        $commandModel = new CommandLineModel();
+        $commands =  $commandModel->where('fk_id_article', $this->id_article)->findAll();
+      
+        $numberSold = 0;
+        foreach ( $commands as  $command) {
+            $numberSold +=  $command->command_quantity;
+        }
+
+        $stock = 0;
+        $stock = $numberBought - $numberSold;
+
+        return $stock;
+    }
+
 }
