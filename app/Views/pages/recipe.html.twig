@@ -102,7 +102,7 @@
 
 		<div id="recipe-comments">
 			<div id="recipe-comments-title">
-				Commentaires
+				Commentaires ({{ comments|length}})
 			</div>
 
 			<div id="recipe-comments-content">
@@ -194,6 +194,8 @@ const csrf = document.querySelector('input[name="csrf_nesti"]');
 
 buttonComment = document.querySelector("#btn-send-comment");
 
+if (typeof(buttonComment) != 'undefined' && buttonComment != null) {
+
 buttonComment.addEventListener('click', (function (e) {
 
 formComment = document.querySelector("#form-write-comment");
@@ -235,6 +237,8 @@ csrf.setAttribute('value', response.csrf_token);
 });
 
 }))
+
+}
 
 
 /**
@@ -281,7 +285,6 @@ alert.setAttribute("hidden", "");
 // AJAX SEND FORM GRADE
 
 grades = document.querySelectorAll(".give-grade");
-console.log(grades);
 
 grades.forEach((element, index) => element.addEventListener('click', (function (e) {
 

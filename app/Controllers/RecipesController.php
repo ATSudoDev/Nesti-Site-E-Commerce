@@ -46,10 +46,10 @@ class RecipesController extends BaseController
         $paragraphModel = new ParagraphModel();
         $commentModel = new CommentModel();
 
-        $recipe = $recipeModel->find($idRecipe); // get the recipe object
-        $listIngredients = $ingredientsRecipeModel->where('fk_id_recipe', $idRecipe)->findAll(); // get all the recipe ingredients for a recipe. Return array of object
-        $listParagraphs = $paragraphModel->where('fk_id_recipes', $idRecipe)->orderBy('order_paragraph', 'asc')->findAll(); // get all the steps for a recipe. Return an array of object
-        $listComments = $commentModel->where("fk_id_recipe", $idRecipe)->where("state_comment", "a")->findAll(); // get all the accepted comments for a recipe
+        $recipe = $recipeModel->find($idRecipe); 
+        $listIngredients = $ingredientsRecipeModel->where('fk_id_recipe', $idRecipe)->findAll(); 
+        $listParagraphs = $paragraphModel->where('fk_id_recipes', $idRecipe)->orderBy('order_paragraph', 'asc')->findAll(); 
+        $listComments = $commentModel->where("fk_id_recipe", $idRecipe)->where("state_comment", "a")->findAll();
 
         $data["loc"] = "recipe";
         $data["recipe"] = $recipe;
