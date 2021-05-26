@@ -4,6 +4,7 @@ use CodeIgniter\Entity;
 
 //MODELS
 use App\Models\ImageModel;
+use App\Models\UserModel;
 use App\Models\GradeModel;
 
 class Recipe extends Entity
@@ -14,6 +15,14 @@ class Recipe extends Entity
         $imageModel = new ImageModel();
         $image = $imageModel->find($this->fk_id_image);
         return $image;
+    }
+
+    public function getUsernameChief()
+    {
+        $userModel = new UserModel();
+        $chief =  $userModel->find($this->fk_id_chief);
+
+        return $chief;
     }
 
     public function getNumberGrade()

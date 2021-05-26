@@ -24,6 +24,10 @@
 						{{recipe.name_recipe}}
 					</h2>
 
+					<h3 id ="recipe-username-chief">
+					proposé par {{ recipe.getUsernameChief().username_user }}
+					</h3>
+
 					<div class="recipe-card-grade">
 						<div class="recipes-grade-stars">
 							{% set copyGrade = recipe.getAverageGrade() %}
