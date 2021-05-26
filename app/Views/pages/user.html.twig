@@ -6,7 +6,7 @@
 		<div id="logging">
 			{% if session.logged_in == true %}
 
-				<div id="account-inscription">
+				<div id="account-connected">
 					<div id="connection-title">
 						Bonjour
 					</div>
@@ -15,15 +15,15 @@
 						{{session.lastname}}
 						{{session.firstname}}
 					</div>
-					<a href = "{{ base_url('/user/disconnect')}}">
-					<button type="submit" id="btn-disconnection">Déconnexion</button>
+					<a href="{{ base_url('/user/disconnect')}}">
+						<button type="submit" id="btn-disconnection">Déconnexion</button>
 					</a>
 				</div>
 
 
 			{% else %}
 
-				<div id="account-inscription">
+				<div id="account-connection">
 					<div id="connection-title">
 						Connexion
 					</div>
@@ -137,9 +137,9 @@
 {% endblock %}
 
 {% block script %}
-<script>
+	<script>
 
-	// PASSWORD STRENGHT
+		// PASSWORD STRENGHT
 
 let pwInput = document.getElementById("register-password");
 
@@ -206,7 +206,9 @@ document.getElementById("pwd-special").style.color = '#F58F29'
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
 
-buttonConnection = document.querySelector("#btn-connection");
+buttonConnection = document.getElementById("btn-connection");
+
+if (typeof(buttonConnection) != 'undefined' && buttonConnection != null) {
 
 buttonConnection.addEventListener('click', (function (e) {
 
@@ -224,18 +226,18 @@ logging.innerHTML = '';
 
 
 var divGeneral = document.createElement("div");
-divGeneral.id = "account-inscription";
+divGeneral.id = "account-connected";
 
 var divTitle = document.createElement("div");
-divTitle.id = "connection-title"; 
+divTitle.id = "connection-title";
 divTitle.innerHTML = "Bonjour";
 
 var divUserData = document.createElement("div");
-divUserData.id = "user-data"; 
-divUserData.innerHTML = response.lastname + ' ' +  response.firstname;
+divUserData.id = "user-data";
+divUserData.innerHTML = response.lastname + ' ' + response.firstname;
 
 var link = document.createElement("a");
-link.setAttribute('href', "{{ base_url('/user/disconnect')}}");
+link.setAttribute('href', "{{ base_url('/user/disconnect') }}");
 
 var buttonDisconnection = document.createElement("button");
 buttonDisconnection.id = "btn-disconnection";
@@ -261,6 +263,8 @@ csrf.setAttribute('value', response.csrf_token);
 });
 
 }));
+
+}
 
 /**
 		* Ajax request to connect a user
@@ -387,6 +391,6 @@ var alert = el;
 alert.setAttribute("hidden", "");
 };
 
-</script>
+	</script>
 
 {% endblock %}
