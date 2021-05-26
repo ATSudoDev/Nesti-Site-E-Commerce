@@ -42,8 +42,7 @@
 							{% endfor %}
 						</div>
 						<div class="recipes-grade-out-of">
-							/
-							{{ recipe.getNumberGrade() }}
+							({{ recipe.getNumberGrade() }})
 						</div>
 					</div>
 
@@ -130,12 +129,12 @@
 			</div>
 		</div>
 
-		<div class="alert alert-success" id="alert-comment" onclick="hideAlert(this)" hidden>Votre commentaire a bien été enregistré</div>
-		<div class="alert alert-danger" id="alert-already" onclick="hideAlert(this)" hidden>Vous avez déjà commenté cette recette</div>
-
 		<div id="recipe-interactions">
 			{% if session.logged_in == true %}
 				<div id="write-comments">
+					<div class="alert alert-success" id="alert-comment" onclick="hideAlert(this)" hidden>Votre commentaire a bien été enregistré</div>
+					<div class="alert alert-danger" id="alert-comment-already" onclick="hideAlert(this)" hidden>Vous avez déjà commenté cette recette</div>
+
 					<div id="write-comments-title">
 						Écrire un commentaire
 					</div>
@@ -152,9 +151,23 @@
 				</div>
 
 				<div id="give-grade">
+					<div class="alert alert-success" id="alert-grade" onclick="hideAlert(this)" hidden>Votre note a bien été enregistré</div>
+					<div class="alert alert-danger" id="alert-grade-already" onclick="hideAlert(this)" hidden>Vous avez déjà noté cette recette</div>
+
 					<div id="recipe-grade-title">
 						Noter la recette
 					</div>
+					<form id="form-give-grade">
+						<div id="give-grade-recipe-stars">
+
+							{% for i in range(0,4) %}
+								<span data-value={{5-i}} class="fa-stack give-grade">
+									&#9734
+								</span>
+							{% endfor %}
+
+						</div>
+					</form>
 				</div>
 
 			{% else %}
@@ -175,7 +188,7 @@
 {% block script %}
 	<script>
 
-	// AJAX SEND FORM COMMENT
+		// AJAX SEND FORM COMMENT
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
 
@@ -201,18 +214,18 @@ document.querySelector("#errorCommentTitle").innerHTML = "";
 document.querySelector("#errorCommentText").innerHTML = "";
 
 } else {
-	if (response.validation[0]) {
-		alertAlready = document.querySelector("#alert-already");
-		alertAlready.removeAttribute("hidden");
+if (response.validation[0]) {
+alertCommentAlready = document.querySelector("#alert-comment-already");
+alertCommentAlready.removeAttribute("hidden");
 
-		document.querySelector("#write-comment-title").value = "";
-		document.querySelector("#write-comment-area").value = "";
-		
-		
-	} else {
-	document.querySelector("#errorCommentTitle").innerHTML = response.validation['title-comment'] || "";
-	document.querySelector("#errorCommentText").innerHTML = response.validation['content-comment'] || "";
-	}
+document.querySelector("#write-comment-title").value = "";
+document.querySelector("#write-comment-area").value = "";
+
+
+} else {
+document.querySelector("#errorCommentTitle").innerHTML = response.validation['title-comment'] || "";
+document.querySelector("#errorCommentText").innerHTML = response.validation['content-comment'] || "";
+}
 
 }
 
@@ -225,7 +238,7 @@ csrf.setAttribute('value', response.csrf_token);
 
 
 /**
-		* Ajax request to add a user
+		* Ajax request to add a comment
 		* @param obj form
 		* @returns mixed
 		*/
@@ -243,7 +256,7 @@ cache: 'default',
 body: formData
 };
 
-let response = await fetch('{{ base_url() }}/recipe/{{recipe.id_recipe}}/comment', myInit);
+let response = await fetch('{{ base_url() }}/recipe/{{ recipe.id_recipe }}/comment', myInit);
 try {
 if (response.ok) {
 return await response.json();
@@ -258,12 +271,130 @@ console.error(e.message);
 function hideAlert(el) {
 var alert = el;
 alert.setAttribute("hidden", "");
-};	
+};
 
 function hideAlert(el) {
 var alert = el;
 alert.setAttribute("hidden", "");
 };
+
+// AJAX SEND FORM GRADE
+
+grades = document.querySelectorAll(".give-grade");
+console.log(grades);
+
+grades.forEach((element, index) => element.addEventListener('click', (function (e) {
+
+var grade = element.getAttribute("data-value");
+addGrade(grade).then((response) => {
+if (response) {
+if (response.success && response.csrf_token) {
+
+alertGrade = document.querySelector("#alert-grade");
+alertGrade.removeAttribute("hidden");
+
+recipeCardGrade = document.querySelector(".recipe-card-grade");
+recipeCardGrade.innerHTML = '';
+
+var recipesGradeStars = document.createElement("div");
+recipesGradeStars.className = "recipes-grade-stars";
+recipesGradeStars.innerHTML = "";
+
+var recipesGradeOutOf = document.createElement("div");
+recipesGradeOutOf.className = "recipes-grade-out-of";
+recipesGradeOutOf.innerHTML = "(" + response.numberGrades + ")";
+
+var averageGrade = response.averageGrade;
+	console.log(averageGrade);
+
+	for (var x = 0; x < 5; x++) {
+
+		var span = document.createElement("span");
+		span.className = "fa-stack";
+		span.style.width = "1.25em"
+
+		var i = document.createElement("i");
+		i.className = "far fa-star fa-stack-1x fa-fw";
+
+		span.appendChild(i);
+
+		if (averageGrade > 0 ) {
+			console.log(averageGrade);
+			if (averageGrade >= 1 ) {
+
+				var i2 = document.createElement("i");
+					i2.className = "fas fa-star fa-stack-1x fa-fw";
+					span.appendChild(i2);
+			} else {
+				var i3 = document.createElement("i");
+					i3.className = "fas fa-star-half fa-stack-1x fa-fw";
+					span.appendChild(i3);
+			}
+
+		}
+
+		recipesGradeStars.appendChild(span);
+		averageGrade = ( averageGrade - 1)
+	}
+
+recipeCardGrade.appendChild(recipesGradeStars);
+recipeCardGrade.appendChild(recipesGradeOutOf);				
+
+} else {
+
+alertGrade = document.querySelector("#alert-grade");
+alertGrade.setAttribute("hidden", "");
+alertGradeAlready = document.querySelector("#alert-grade-already");
+alertGradeAlready.removeAttribute("hidden");
+
+}
+
+// Refresh CSRF
+
+csrf.setAttribute('value', response.csrf_token);
+}
+});
+
+})))
+
+/** *Ajax request to add a grade
+ *@param obj form 
+ *@returns mixed 
+ */
+async function addGrade(grade) {
+
+var myHeaders = new Headers();
+let formData = new FormData();
+
+formData.append('grade', grade);
+formData.append(csrf.name, csrf.value);
+
+var myInit = {
+method: 'POST',
+headers: myHeaders,
+mode: 'cors',
+cache: 'default',
+body: formData
+};
+
+let response = await fetch('{{ base_url() }}/recipe/{{ recipe.id_recipe }}/grade', myInit);
+try {
+if (response.ok) {
+return await response.json();
+} else {
+return false;
+}
+} catch (e) {
+console.error(e.message);
+}
+};
+
+function hideAlert(el) {
+var alert = el;
+alert.setAttribute("hidden", "");
+};
+
+</script>
 	
-	</script>
-{% endblock %}
+
+	{% endblock %}

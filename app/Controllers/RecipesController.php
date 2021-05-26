@@ -7,10 +7,12 @@ use App\Models\RecipeModel;
 use App\Models\IngredientsRecipeModel;
 use App\Models\ParagraphModel;
 use App\Models\CommentModel;
+use App\Models\GradeModel;
 use App\Models\TagModel;
 
 // ENTITIES
 use App\Entities\Comment;
+use App\Entities\Grade;
 
 class RecipesController extends BaseController
 {
@@ -58,7 +60,7 @@ class RecipesController extends BaseController
     }
 
     /**
-     * Get the recipe information
+     * Add comme to one the recipe
      */
     public function recipeComment($idRecipe)
     {
@@ -68,8 +70,6 @@ class RecipesController extends BaseController
         helper('form');
 
         $data['validation'] = [];
-
-
 
         if ($this->request->getMethod() == 'post') {
 
@@ -101,7 +101,7 @@ class RecipesController extends BaseController
                 $id_user =  $this->session->get('id');
                 $result =  $commentModel->where('fk_id_recipe', $idRecipe)->where('fk_id_user', $id_user)->find();
 
-               
+
 
                 if (empty($result)) {
 
@@ -115,7 +115,6 @@ class RecipesController extends BaseController
                         'state_comment' => 'w',
                         'fk_id_recipe' => $idRecipe,
                         'fk_id_user' =>  $id_user,
-
                     ]);
 
                     $commentModel->insert($newComment);
@@ -125,6 +124,59 @@ class RecipesController extends BaseController
 
                     $data['validation'] = ['already'];
                 }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        die;
+    }
+
+    /**
+     * Add comme to one the recipe
+     */
+    public function recipeGrade($idRecipe)
+    {
+        $data = [];
+        $data["success"] = false;
+        $data['csrf_token'] = csrf_hash();
+        helper('form');
+
+        $data['validation'] = [];
+
+        if ($this->request->getMethod() == 'post') {
+
+            $gradeModel = new GradeModel();
+            $id_user =  $this->session->get('id');
+            $result =  $gradeModel->where('fk_id_recipe', $idRecipe)->where('fk_id_user', $id_user)->find();
+
+            if (empty($result)) {
+
+                $grade = $this->request->getPost('grade');
+
+                $newGrade = new Grade();
+                $newGrade->fill([
+                    'grade_out_of_5' =>  $grade,
+                    'fk_id_recipe' => $idRecipe,
+                    'fk_id_user' =>  $id_user,
+                ]);
+
+                $gradeModel->insert($newGrade);
+
+                $grades = $gradeModel->where('fk_id_recipe', $idRecipe)->findAll();
+                $numberGrades = 0;
+                $totalGrades = 0;
+                foreach ($grades as $grade) {
+                    $totalGrades += $grade->grade_out_of_5;
+                    $numberGrades++;
+                }
+                 $averageGrade = ($totalGrades /  $numberGrades);
+                
+                $data["averageGrade"] = $averageGrade ;
+                $data["numberGrades"] = $numberGrades;
+                $data["success"] = true;
+            } else {
+                $data['validation'] = ['already'];
             }
         }
 

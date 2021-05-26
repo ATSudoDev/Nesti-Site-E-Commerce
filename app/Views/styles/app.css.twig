@@ -303,6 +303,39 @@
 		border: 1px solid #F0F7EE;
 	}
 
+	#give-grade-recipe-stars {
+		color: #F58F29;
+	}
+
+	.give-grade {
+		width: 2.6rem;
+	}
+
+	#give-grade-recipe-stars {
+		display: flex;
+		justify-content: left;
+		unicode-bidi: bidi-override;
+		direction: rtl;
+		font-size: 50px;
+		margin-top: -1.5rem;
+	}
+
+	#give-grade-recipe-stars span {
+		display: inline-block;
+		position: relative;
+	}
+
+	#give-grade-recipe-stars span:hover {
+		cursor: pointer;
+	}
+
+	#give-grade-recipe-stars>span:hover:before,
+	#give-grade-recipe-stars>span:hover~span:before {
+		position: absolute;
+		content: "\2605";
+		color: #F58F29;
+	}
+
 	{
 		# ------------ PAGE INFO RECIPE ------------- #
 	}

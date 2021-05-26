@@ -48,6 +48,7 @@ $routes->get('recipes', 'RecipesController::recipes');
 $routes->get('recipes/tag/(:num)', 'TagsController::tag/$1');
 $routes->get('recipe/(:num)', 'RecipesController::recipe/$1');
 $routes->post('/recipe/(:num)/comment', 'RecipesController::recipeComment/$1');
+$routes->post('/recipe/(:num)/grade', 'RecipesController::recipeGrade/$1');
 
 // ROUTES TAGS
 $routes->get('/tags', 'TagsController::tags');
