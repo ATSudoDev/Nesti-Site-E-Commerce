@@ -56,6 +56,8 @@ $routes->get('/tag/(:num)', 'TagsController::tag/$1');
 // USER
 $routes->get('user', 'PagesController::user');
 $routes->post('user/register', 'UserController::register');
+$routes->post('user/connection', 'ConnectionController::connection');
+$routes->get('user/disconnect', 'ConnectionController::disconnect');
 
 
 // API

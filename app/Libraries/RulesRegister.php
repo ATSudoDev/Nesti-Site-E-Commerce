@@ -15,7 +15,7 @@ class RulesRegister
 
     public function regex_check_password($str)
     {
-        if (!preg_match("/^(?=.*?[A-Z])(?=(.*[a-z]))(?=(.*[\d]))(?=(.*[\W]))(?!.*\s).{12,}$/", $str)) {
+        if (!preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$&+,:;=?@#|'<>.-^*()%!])(?=\\S+$).{12,}$/", $str)) {
             return FALSE;
         } else {
             return TRUE;
@@ -42,7 +42,7 @@ class RulesRegister
 
     public function regex_check_city($str)
     {
-        if (!preg_match("/^[a-zA-Z0-9._-]{3,25}$/", $str)) {
+        if (!preg_match("/^[a-zA-ZÀ-ÿ ,.'-]{3,25}+$/", $str)) {
             return FALSE;
         } else {
             return TRUE;

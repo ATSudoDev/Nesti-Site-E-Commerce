@@ -125,4 +125,5 @@ class UserController extends BaseController
         echo json_encode($data);
         die;
     }
+    
 }

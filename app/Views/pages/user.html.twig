@@ -3,29 +3,56 @@
 {% block content %}
 
 	<div id="account">
-		<div>
-			<div id="account-inscription">
-				<div id="connection-title">
-					Connection
+		<div id="logging">
+			{% if session.logged_in == true %}
+
+				<div id="account-inscription">
+					<div id="connection-title">
+						Bonjour
+					</div>
+
+					<div id="user-data">
+						{{session.lastname}}
+						{{session.firstname}}
+					</div>
+					<a href = "{{ base_url('/user/disconnect')}}">
+					<button type="submit" id="btn-disconnection">Déconnexion</button>
+					</a>
 				</div>
 
-				<div id="connection-form-input">
-					<div class="form-group">
-						<label for="connection-firstname">Nom d'utilisateur</label>
-						<input type="text" class="form-control" id="connection-firstname" name="firstname">
-						<span class="text-danger" id="errorConnectionUsername">{{validation.getErrors()["firstname"]}}</span>
+
+			{% else %}
+
+				<div id="account-inscription">
+					<div id="connection-title">
+						Connexion
 					</div>
-					<div class="form-group">
-						<label for="connection-username">Mot de passe</label>
-						<input type="text" class="form-control" id="connection-username" name="username">
-						<span class="text-danger" id="errorConnectionPassword">{{validation.getErrors()["password"]}}</span>
-					</div>
+
+					<form id="form-connection-user">
+						<div id="connection-form-input">
+							<div class="form-group">
+								<label for="connection-username">Nom d'utilisateur</label>
+								<input type="text" class="form-control" id="connection-username" name="connection-username">
+								<span class="text-danger" id="errorConnectionUsername">{{validation.getErrors()["connection-username"]}}</span>
+							</div>
+							<div class="form-group">
+								<label for="connection-password">Mot de passe</label>
+								<input type="password" class="form-control" id="connection-password" name="connection-password">
+								<span class="text-danger" id="errorConnectionPassword">{{validation.getErrors()["connection-password"]}}</span>
+							</div>
+						</div>
+					</form>
+					<button type="submit" id="btn-connection">Connexion</button>
+
 				</div>
-				<button type="submit" id="btn-connection">Connexion</button>
-			</div>
+
+
+			{% endif %}
 		</div>
 
 		<div>
+			<div class="alert alert-success" id="alert-register" onclick="hideAlert(this)" hidden>L'utilisateur a bien été enregistré</div>
+
 			<div id="account-register">
 				<div id="register-title">
 					Inscription
@@ -110,9 +137,9 @@
 {% endblock %}
 
 {% block script %}
-	<script>
+<script>
 
-		// PASSWORD STRENGHT
+	// PASSWORD STRENGHT
 
 let pwInput = document.getElementById("register-password");
 
@@ -175,16 +202,106 @@ document.getElementById("pwd-special").style.color = '#F58F29'
 }
 }
 
-// AJAX SEND FORM REGISTER
+// AJAX SEND FORM CONNECTION
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
+
+buttonConnection = document.querySelector("#btn-connection");
+
+buttonConnection.addEventListener('click', (function (e) {
+
+formConnection = document.querySelector("#form-connection-user");
+
+event.preventDefault();
+
+connectUser(formConnection).then((response) => {
+if (response) {
+
+if (response.success && response.csrf_token) {
+
+logging = document.querySelector("#logging");
+logging.innerHTML = '';
+
+
+var divGeneral = document.createElement("div");
+divGeneral.id = "account-inscription";
+
+var divTitle = document.createElement("div");
+divTitle.id = "connection-title"; 
+divTitle.innerHTML = "Bonjour";
+
+var divUserData = document.createElement("div");
+divUserData.id = "user-data"; 
+divUserData.innerHTML = response.lastname + ' ' +  response.firstname;
+
+var link = document.createElement("a");
+link.setAttribute('href', "{{ base_url('/user/disconnect')}}");
+
+var buttonDisconnection = document.createElement("button");
+buttonDisconnection.id = "btn-disconnection";
+buttonDisconnection.innerHTML = "Déconnexion";
+
+divGeneral.appendChild(divTitle);
+divGeneral.appendChild(divUserData);
+link.appendChild(buttonDisconnection);
+divGeneral.appendChild(link);
+logging.appendChild(divGeneral);
+
+} else {
+
+document.querySelector("#errorConnectionUsername").innerHTML = response.validation['connection-username'] || response.error_username;
+document.querySelector("#errorConnectionPassword").innerHTML = response.validation['connection-password'] || response.error_password;
+
+}
+
+// Refresh CSRF
+csrf.setAttribute('value', response.csrf_token);
+
+}
+});
+
+}));
+
+/**
+		* Ajax request to connect a user
+		* @param obj form
+		* @returns mixed
+		*/
+async function connectUser(obj) {
+
+var myHeaders = new Headers();
+
+let formData = new FormData(obj);
+formData.append(csrf.name, csrf.value);
+
+var myInit = {
+method: 'POST',
+headers: myHeaders,
+mode: 'cors',
+cache: 'default',
+body: formData
+};
+
+let response = await fetch('{{ base_url() }}/user/connection', myInit);
+try {
+if (response.ok) {
+return await response.json();
+} else {
+return false;
+}
+} catch (e) {
+console.error(e.message);
+}
+};
+
+
+// AJAX SEND FORM REGISTER
 
 buttonRegister = document.querySelector("#btn-register");
 
 buttonRegister.addEventListener('click', (function (e) {
 
 formRegister = document.querySelector("#form-register-user");
-console.log(formRegister);
 
 event.preventDefault();
 
@@ -192,10 +309,30 @@ addUser(formRegister).then((response) => {
 if (response) {
 if (response.success && response.csrf_token) {
 
-window.location = base_url('/user');
+alertRegister = document.querySelector("#alert-register");
+alertRegister.removeAttribute("hidden");
+
+document.querySelector("#register-lastname").value = "";
+document.querySelector("#register-firstname").value = "";
+document.querySelector("#register-username").value = "";
+document.querySelector("#register-email").value = "";
+document.querySelector("#register-password").value = "";
+document.querySelector("#register-address1").value = "";
+document.querySelector("#register-address2").value = "";
+document.querySelector("#register-city").value = "";
+document.querySelector("#register-postcode").value = "";
+
+document.querySelector("#errorRegisterLastname").innerHTML = "";
+document.querySelector("#errorRegisterFirstname").innerHTML = "";
+document.querySelector("#errorRegisterEmail").innerHTML = "";
+document.querySelector("#errorRegisterUsername").innerHTML = "";
+document.querySelector("#errorRegisterPassword").innerHTML = "";
+document.querySelector("#errorRegisterAddress1").innerHTML = "";
+document.querySelector("#errorRegisterAddress2").innerHTML = "";
+document.querySelector("#errorRegisterCity").innerHTML = "";
+document.querySelector("#errorRegisterPostcode").innerHTML = "";
 
 } else {
-console.log(response.validation);
 document.querySelector("#errorRegisterLastname").innerHTML = response.validation['lastname'] || "";
 document.querySelector("#errorRegisterFirstname").innerHTML = response.validation['firstname'] || "";
 document.querySelector("#errorRegisterEmail").innerHTML = response.validation['email'] || "";
@@ -209,18 +346,18 @@ document.querySelector("#errorRegisterPostcode").innerHTML = response.validation
 
 // Refresh CSRF
 csrf.setAttribute('value', response.csrf_token);
+console.log(csrf);
 }
 });
 
 }))
 
 
-
 /**
-* Ajax request to add a user
-* @param obj form
-* @returns mixed
-*/
+		* Ajax request to add a user
+		* @param obj form
+		* @returns mixed
+		*/
 async function addUser(obj) {
 
 var myHeaders = new Headers();
@@ -245,7 +382,14 @@ return false;
 } catch (e) {
 console.error(e.message);
 }
-}
+};
 
-	</script>
+function hideAlert(el) {
+var alert = el;
+alert.setAttribute("hidden", "");
+};
+
+
+</script>
+
 {% endblock %}
