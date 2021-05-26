@@ -80,7 +80,7 @@ class ConnectionController extends BaseController
                                 $dataSession = [
                                     'lastname' => $user->lastname_user,
                                     'firstname' => $user->firstname_user,
-                                    'username_user' => $user->username_user,
+                                    'username' => $user->username_user,
                                     'id' => $user->id_user,
                                     'logged' => "yes",
                                     'logged_in' => true

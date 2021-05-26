@@ -47,9 +47,9 @@ $routes->get('article/(:num)', 'MarketController::article/$1');
 $routes->get('recipes', 'RecipesController::recipes');
 $routes->get('recipes/tag/(:num)', 'TagsController::tag/$1');
 $routes->get('recipe/(:num)', 'RecipesController::recipe/$1');
+$routes->post('/recipe/(:num)/comment', 'RecipesController::recipeComment/$1');
 
 // ROUTES TAGS
-
 $routes->get('/tags', 'TagsController::tags');
 $routes->get('/tag/(:num)', 'TagsController::tag/$1');
 
@@ -58,7 +58,6 @@ $routes->get('user', 'PagesController::user');
 $routes->post('user/register', 'UserController::register');
 $routes->post('user/connection', 'ConnectionController::connection');
 $routes->get('user/disconnect', 'ConnectionController::disconnect');
-
 
 // API
 $routes->get('/api',"ApiController::index");

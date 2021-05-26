@@ -294,7 +294,6 @@ console.error(e.message);
 }
 };
 
-
 // AJAX SEND FORM REGISTER
 
 buttonRegister = document.querySelector("#btn-register");
@@ -346,7 +345,6 @@ document.querySelector("#errorRegisterPostcode").innerHTML = response.validation
 
 // Refresh CSRF
 csrf.setAttribute('value', response.csrf_token);
-console.log(csrf);
 }
 });
 

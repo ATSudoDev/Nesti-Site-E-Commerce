@@ -98,51 +98,172 @@
 		</div>
 	</div>
 
-	<div class="recipe-comments">
-		<div id="recipe-comments-title">
-			Commentaires
+
+	<div id="recipe-others">
+
+		<div id="recipe-comments">
+			<div id="recipe-comments-title">
+				Commentaires
+			</div>
+
+			<div id="recipe-comments-content">
+
+				{% for comment in comments %}
+
+					<div class="recipe-comment">
+						<div class="recipe-comment-header">
+							<div class="recipe-comment-title">
+								{{comment.title_comment}}
+							</div>
+							<div class="recipe-comment-user">
+								par
+								{{comment.getUser().username_user}}
+							</div>
+							<div class="recipe-comment-date">
+								({{comment.date_creation_comment|date("m/d/Y H:m:s")}})
+							</div>
+						</div>
+
+						<div class="recipe-comment-content">{{comment.content_comment}}</div>
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 
-		<div id="recipe-comments-content">
+		<div class="alert alert-success" id="alert-comment" onclick="hideAlert(this)" hidden>Votre commentaire a bien été enregistré</div>
+		<div class="alert alert-danger" id="alert-already" onclick="hideAlert(this)" hidden>Vous avez déjà commenté cette recette</div>
 
-			{% for comment in comments %}
-
-				<div class="recipe-comment">
-					<div class="recipe-comment-header">
-						<div class="recipe-comment-title">
-							{{comment.title_comment}}
-						</div>
-						<div class="recipe-comment-user">
-							par
-							{{comment.getUser().username_user}}
-						</div>
-						<div class="recipe-comment-date">
-							({{comment.date_creation_comment|date("m/d/Y H:m:s")}})
-						</div>
+		<div id="recipe-interactions">
+			{% if session.logged_in == true %}
+				<div id="write-comments">
+					<div id="write-comments-title">
+						Écrire un commentaire
 					</div>
 
-					<div class="recipe-comment-content">{{comment.content_comment}}</div>
+					<div id="form-send-comment">
+						{{ form_open(base_url(), {id :"form-write-comment"})}}
+						<input id="write-comment-title" name="title-comment" placeholder="Titre du commentaire" type='text'>
+						<span class="text-danger" id="errorCommentTitle"></span>
+						<textarea id="write-comment-area" rows="5" max-length="50" style="resize: none;" name="content-comment" placeholder="Écrivez votre commentaire ici !"></textarea>
+						<span class="text-danger" id="errorCommentText"></span>
+						<button type="submit" id="btn-send-comment">Envoyer</button>
+						{{ form_close() }}
+					</div>
 				</div>
-			{% endfor %}
 
-		</div>
+				<div id="give-grade">
+					<div id="recipe-grade-title">
+						Noter la recette
+					</div>
+				</div>
 
-		<div id="write-comments">
-			<div id="write-comments-title">
-				Écrire un commentaire
-			</div>
-
-			<div id="form-send-comment">
-				{{ form_open(base_url(), {id :"form-write-comment"})}}
-				<textarea lang="fr" id="write-comment-title" rows="1" max-length="50" style="resize: none;" name="title" placeholder="Titre du commentaire" required></textarea>
-				<textarea id="write-comment-area" rows="5" max-length="50" style="resize: none;" name="comment" placeholder="Écrivez votre commentaire ici !" required></textarea>
-				<button type="submit" id="btn-send-comment">Envoyer</button>
-				{{ form_close() }}
-			</div>
+			{% else %}
+				<div id="write-comments">
+					<div id="write-comments-title">
+						Pour envoyer un commentaire ou noter cette recette
+					</div>
+					<a href="{{ base_url('/user')}}">
+						<button type="submit" id="btn-goes-connection">Connectez-vous</button>
+					</a>
+				</div>
+			{% endif %}
 		</div>
 	</div>
+
 {% endblock %}
 
 {% block script %}
-	<script></script>
+	<script>
+
+	// AJAX SEND FORM COMMENT
+
+const csrf = document.querySelector('input[name="csrf_nesti"]');
+
+buttonComment = document.querySelector("#btn-send-comment");
+
+buttonComment.addEventListener('click', (function (e) {
+
+formComment = document.querySelector("#form-write-comment");
+
+event.preventDefault();
+
+addComment(formComment).then((response) => {
+if (response) {
+if (response.success && response.csrf_token) {
+
+alertComment = document.querySelector("#alert-comment");
+alertComment.removeAttribute("hidden");
+
+document.querySelector("#write-comment-title").value = "";
+document.querySelector("#write-comment-area").value = "";
+
+document.querySelector("#errorCommentTitle").innerHTML = "";
+document.querySelector("#errorCommentText").innerHTML = "";
+
+} else {
+	if (response.validation[0]) {
+		alertAlready = document.querySelector("#alert-already");
+		alertAlready.removeAttribute("hidden");
+
+		document.querySelector("#write-comment-title").value = "";
+		document.querySelector("#write-comment-area").value = "";
+		
+		
+	} else {
+	document.querySelector("#errorCommentTitle").innerHTML = response.validation['title-comment'] || "";
+	document.querySelector("#errorCommentText").innerHTML = response.validation['content-comment'] || "";
+	}
+
+}
+
+// Refresh CSRF
+csrf.setAttribute('value', response.csrf_token);
+}
+});
+
+}))
+
+
+/**
+		* Ajax request to add a user
+		* @param obj form
+		* @returns mixed
+		*/
+async function addComment(obj) {
+
+var myHeaders = new Headers();
+
+let formData = new FormData(obj);
+
+var myInit = {
+method: 'POST',
+headers: myHeaders,
+mode: 'cors',
+cache: 'default',
+body: formData
+};
+
+let response = await fetch('{{ base_url() }}/recipe/{{recipe.id_recipe}}/comment', myInit);
+try {
+if (response.ok) {
+return await response.json();
+} else {
+return false;
+}
+} catch (e) {
+console.error(e.message);
+}
+};
+
+function hideAlert(el) {
+var alert = el;
+alert.setAttribute("hidden", "");
+};	
+
+function hideAlert(el) {
+var alert = el;
+alert.setAttribute("hidden", "");
+};
+	
+	</script>
 {% endblock %}
