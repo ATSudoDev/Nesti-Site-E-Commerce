@@ -8,7 +8,7 @@
 		</a>
 		<p>
 			&nbsp >
-			{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}
+			{{article.getName()}}
 		</p>
 	</div>
 
@@ -16,18 +16,17 @@
 		<div>
 			<div id="article-card-details">
 
-				<div id="article-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImage().name_image~"."~article.getImage().extension_image }}");'></div>
+				<div id="article-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImageDir() }}'></div>
 
 				<div id="article-content-details">
 
 					<h2 id="article-title-details">
-						{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}
+						{{article.getName()}}
 					</h2>
 
+					{{ form_open(base_url('/basket'),{id:"form-add-article-cart"} )}}
 					<div id="article-info">
 
-
-						{{ form_open(base_url(),{id:"form-add-article-cart"} )}}
 						<label for="input-quantity">Quantité</label>
 						{% if article.getStock() > 0 %}
 							<select id="input-quantity" class="form-control" name="quantity">
@@ -36,22 +35,20 @@
 								{% endfor %}
 							</select>
 						{% else %}
-						<select id="input-quantity" class="form-control" name="quantity" disabled>
-							<option disabled>0</option>
-							</select>	
+							<select id="input-quantity" class="form-control" name="quantity" disabled>
+								<option disabled>0</option>
+							</select>
 						{% endif %}
 
-						{{ form_close() }}
-
 						<div id="article-price">
-							<p>{{article.getPrice().price_article}}</p>
+							<p>{{article.getPrice()}}</p>
 							<i class="fas fa-euro-sign" aria-hidden="true"></i>
 						</div>
-
-
 					</div>
 
 					<button type="submit" id="btn-add-article">Ajouter au panier</button>
+					{{ form_close() }}
+						<div class="alert-bot alert-success" id="alert-article" onclick="hideAlert(this)" hidden>L'article a bien été ajouté au panier</div>
 				</div>
 			</div>
 		</div>
@@ -66,7 +63,7 @@
 
 					{% for recipe in recipes %}
 						<div class="article-recipe-card">
-							<div class="article-recipe-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.getImage().name_image~"."~recipe.getImage().extension_image }}");'></a>
+							<div class="article-recipe-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.getImageDir()}}'></a>
 						</div>
 						<div class="article-recipe-card-body">
 							<h5 class="article-recipe-card-title">{{recipe.name_recipe}}</h5>
@@ -95,3 +92,78 @@
 		</div>
 	</div>
 </div>{% endblock %}
+
+{% block script %}
+<script>
+
+
+
+// AJAX SEND FORM ARTICLE BASKET
+
+const csrf = document.querySelector('input[name="csrf_nesti"]');
+
+localStorage.clear();
+
+buttonArticle = document.querySelector("#btn-add-article");
+
+buttonArticle.addEventListener('click', (function (e) {
+
+	event.preventDefault();
+
+	var id_article = {{ article.id_article }};
+	var name = "{{ article.getName() }}";
+	var image = "{{ article.getImageDir() }}";
+	var quantity = document.querySelector("#input-quantity").value;
+	var price = "{{ article.getPrice() }}";
+
+	var objArticle = {
+		"id_article": id_article,
+		"name": name,
+		"quantity": quantity,
+		"image": image,
+		"price": price
+	}
+
+	oldBasket = [];
+
+	if (JSON.parse(localStorage.getItem("basket")) != null) {
+		oldBasket = [JSON.parse(localStorage.getItem("basket"))].flat();
+	}
+
+	if (oldBasket.length == 0) {
+
+	localStorage.setItem("basket", JSON.stringify(objArticle));
+
+	} else {
+
+		var idList = oldBasket.map(el => {
+		return el.id_article
+		});
+
+		if (idList.indexOf(objArticle.id_article) != -1) {
+				
+			var finalBasket = oldBasket.map(el => {
+				if (el.id_article === objArticle.id_article) {
+						el.quantity = parseInt(el.quantity) + parseInt(objArticle.quantity);
+				}
+				return el;
+			})
+
+			localStorage.setItem("basket", JSON.stringify(finalBasket));
+		} else { 
+			var newBasket = oldBasket.concat(objArticle).flat()
+			localStorage.setItem("basket", JSON.stringify(newBasket))
+		}
+	}
+
+	alertArticle = document.querySelector("#alert-article");
+	alertArticle.removeAttribute("hidden");
+
+}))
+
+function hideAlert(el) {
+var alert = el;
+alert.setAttribute("hidden", "");
+};
+
+</script>{% endblock %}

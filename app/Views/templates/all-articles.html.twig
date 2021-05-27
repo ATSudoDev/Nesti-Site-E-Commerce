@@ -8,7 +8,7 @@
 			<div class="article-info">
 				<div class="article-info-element">
 					<div class="price-info">
-						<p>{{article.getPrice().price_article}}</p>
+						<p>{{article.getPrice()}}</p>
 						<i class="fas fa-euro-sign" aria-hidden="true"></i>
 					</div>
 					<div class="stock-info">
@@ -30,8 +30,6 @@
 
 	allStocks = document.querySelectorAll(".stock");
 
-	console.log(allStocks);
-
 	allStocks.forEach(element => {
 		stock = element.getAttribute('data-stock');
 
@@ -47,10 +45,6 @@
 	}
 
 	);
-
-
-	
-	
 
 	</script>
 

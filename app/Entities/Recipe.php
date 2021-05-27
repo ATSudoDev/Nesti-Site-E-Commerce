@@ -17,6 +17,12 @@ class Recipe extends Entity
         return $image;
     }
 
+    public function getImageDir()
+    {
+        $imageDir = $this->getImage()->name_image. "." . $this->getImage()->extension_image;
+        return $imageDir;
+    }
+
     public function getUsernameChief()
     {
         $userModel = new UserModel();

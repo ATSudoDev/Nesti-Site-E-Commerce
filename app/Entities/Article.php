@@ -14,18 +14,43 @@ use App\Models\CommandLineModel;
 
 class Article extends Entity
 {
+
+    public function getName()
+    {
+        $name = $this->quantity_unite_article . " " . $this->getMeasureUnit()->name_measure_unit . " de " . $this->getProduct()->name_product;
+        return $name;
+    }
+
     public function getImage()
     {
         $imageModel = new ImageModel();
+
+       if ($this->fk_id_image != null ) {
         $image = $imageModel->find($this->fk_id_image);
+       } else {
+        $image = $imageModel->find(1);
+       }
         return $image;
+    }
+
+    public function getImageDir()
+    {
+        $nameImage = $this->getImage()->name_image;
+        $extensionImage = $this->getImage()->extension_image;
+        
+        $imageDir ='';
+        if($nameImage != null && $extensionImage != null) {
+            $imageDir = $nameImage . "." .  $extensionImage;
+        }
+        
+        return $imageDir;
     }
 
     public function getPrice()
     {
         $priceArticleModel = new PriceArticleModel();
-        $priceArticle = $priceArticleModel->find($this->id_article);
-        return $priceArticle;
+        $priceArticle = $priceArticleModel->getLastPrice($this->id_article);
+        return $priceArticle[0]->price_article;
     }
 
     public function getProduct()

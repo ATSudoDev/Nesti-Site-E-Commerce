@@ -276,16 +276,6 @@ console.error(e.message);
 }
 };
 
-function hideAlert(el) {
-var alert = el;
-alert.setAttribute("hidden", "");
-};
-
-function hideAlert(el) {
-var alert = el;
-alert.setAttribute("hidden", "");
-};
-
 // AJAX SEND FORM GRADE
 
 grades = document.querySelectorAll(".give-grade");
@@ -312,7 +302,6 @@ recipesGradeOutOf.className = "recipes-grade-out-of";
 recipesGradeOutOf.innerHTML = "(" + response.numberGrades + ")";
 
 var averageGrade = response.averageGrade;
-	console.log(averageGrade);
 
 	for (var x = 0; x < 5; x++) {
 
