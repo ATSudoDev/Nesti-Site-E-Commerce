@@ -628,6 +628,7 @@
 		background-color: #F58F29;
 		color: #400406;
 		border: 1px solid #F0F7EE;
+		transform: scale(1.02);
 	}
 
 	#recipe-interactions {
@@ -647,6 +648,62 @@
 	#give-grade {
 		width: 660px;
 	}
+
+	{
+		# ------------- SUGGESTIONS ------------- #
+	}
+
+	#suggestions-main-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.6rem;
+	}
+
+	#suggestions-title {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-left: 3rem;
+	}
+
+	#suggestions-details {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-left: 10rem;
+		margin-right: 10rem;
+	}
+
+	#suggestions-instructions {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 650px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#suggestions-instructions-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-top: 0.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	#suggestions-instructions-details {
+		margin-right: 2rem;
+		margin-left: 2rem;
+		margin-bottom: 0.8rem;
+		color: #F0F7EE;
+	}
+
+	#suggestions-robot {
+		width: 750px;
+	}
+
 
 	{
 		# ------------- MARKET ------------- #
@@ -894,13 +951,14 @@
 		cursor: pointer;
 		padding: 0.6rem 0;
 		margin-top: 0.8rem;
-		width: 70%;
+		width: 60%;
 	}
 
 	#btn-add-article:hover {
 		background-color: #F58F29;
 		color: #400406;
 		border: 1px solid #F0F7EE;
+		transform: scale(1.02);
 	}
 
 	.article-recipe-card {
@@ -1047,8 +1105,7 @@
 		margin-bottom: 1rem;
 	}
 
-	#btn-connection,
-	#btn-disconnection {
+	#btn-connection, #btn-disconnection, #btn-pay, #btn-basket-payment, #btn-basket-connection {
 		font-weight: 700;
 		background-color: #F0F7EE;
 		color: #26413C;
@@ -1063,10 +1120,33 @@
 		margin-bottom: 1rem;
 	}
 
-	#btn-connection:hover {
+	#btn-suggestions-try-again,
+	#btn-suggestions-consult-recipe {
+		font-weight: 700;
+		background-color: #26413C;
+		color: #F0F7EE;
+		text-align: center;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		border-radius: 12px;
+		font-size: 30px;
+		font-family: 'Caveat';
+		border: 1px solid #F0F7EE;
+		cursor: pointer;
+		margin-bottom: 1rem;
+	}
+
+
+	#btn-connection:hover,
+	#btn-disconnection:hover,
+	#btn-pay:hover,
+	#btn-basket-payment:hover,
+	#btn-suggestions-try-again:hover,
+	#btn-suggestions-consult-recipe:hover {
 		background-color: #F58F29;
 		color: #400406;
 		border: 1px solid #F0F7EE;
+		transform: scale(1.02);
 	}
 
 	#account-register {
@@ -1169,7 +1249,8 @@
 		border: 1px solid #F0F7EE;
 	}
 
-	.form-group input:focus {
+	.form-group input:focus,
+	.form-group-row input:focus {
 		outline: none;
 		box-shadow: none;
 	}
@@ -1210,6 +1291,249 @@
 		border: 1px solid transparent;
 		border-radius: 0.25rem;
 		cursor: pointer;
+	}
+
+	{
+		# ------------- BASKET ------------- #
+	}
+
+	#basket-details {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-left: 7rem;
+		margin-right: 7rem;
+	}
+
+	#basket-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.6rem;
+	}
+
+	#basket-main-title {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-left: 3rem;
+	}
+
+
+	#basket-cards {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 950px;
+	}
+
+	#basket-price-command {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 600px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+	}
+
+	#basket-cb {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 600px;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.card-article-basket {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 0 10px #666;
+		margin-bottom: 2rem;
+		background-color: #26413C;
+		margin-right: 2rem;
+	}
+
+	.delete-button-basket {
+		margin-top: 0.5rem;
+		color: #F0F7EE;
+		margin-right: -9rem;
+		cursor: pointer;
+	}
+
+	.basket-article-img {
+		background-size: cover;
+		background-position: center;
+		width: 175px;
+		height: 125px;
+		margin-top: 0.5rem;
+		border-radius: 8px;
+		border: 1px solid #F0F7EE;
+	}
+
+	.basket-article-title {
+		margin-top: 0.4rem;
+		margin-bottom: 0;
+		color: #FFF;
+	}
+
+	.basket-article-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	.basket-article-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 0.6rem;
+		margin-top: 0.4rem;
+	}
+
+	.title-quantity {
+		margin-right: 0.8rem;
+		color: #F58F29;
+		font-size: 20px;
+		margin-left: 0.5rem;
+	}
+
+	.input-quantity {
+		font-size: 20px;
+		font-family: 'Caveat';
+		margin-right: 0.8rem;
+	}
+
+	.article-price {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0;
+	}
+
+	.article-price > p {
+		font-size: 20px;
+		color: #F0F7EE;
+		margin: 0 0.6rem 0 0;
+	}
+
+	.article-price > i {
+		font-size: 20px;
+		margin-right: 0.5rem;
+		color: #F58F29;
+	}
+
+	.basket-price-info {
+		display: flex;
+		flex-direction: row;
+		width: 90%;
+		justify-content: space-between;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.basket-price-title {
+		font-size: 25px;
+		color: #F58F29;
+	}
+
+	.basket-price-price {
+		font-size: 25px;
+		color: #F0F7EE;
+	}
+
+	#form-basket-payment .form-group {
+		display: flex;
+		flex-direction: column;
+		color: #F0F7EE;
+		margin-bottom: 0.8rem;
+	}
+
+	#form-basket-payment {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 1rem 6rem;
+		width: 80%;
+	}
+
+	#basket-cb-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-top: 0.8rem;
+	}
+
+	#payment-expiry {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	#input-payment-expiry-month,
+	#input-payment-expiry-year {
+		font-size: 20px;
+		font-family: 'Caveat';
+	}
+
+	.form-group-row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	#form-group-row-fchild {
+		width: 60%;
+		display: flex;
+		flex-direction: column;
+		color: #F0F7EE;
+	}
+
+
+	#form-group-row-schild {
+		color: #F0F7EE;
+		width: 35%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#form-group-row-schild input {
+		font-family: 'Caveat', cursive;
+		font-size: 25px;
+		border-radius: 8px;
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+		cursor: pointer;
+		border: 1px solid #F0F7EE;
+	}
+
+	#basket-cb span {
+		color: #F58F29;
+		font-size: 20px;
+		margin-left: 0.4rem;
+		margin-bottom: 0.4rem;F
+	}
+
+	#thanks-message {
+		border: 1px solid #F0F7EE;
+		border-radius: 8px;
+		width: 850px;
+		box-shadow: 0 0 10px #666;
+		background-color: #26413C;
+		display: flex;
+		color: #F0F7EE;
+		margin-bottom: 3rem;
 	}
 
 

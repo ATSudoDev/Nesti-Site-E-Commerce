@@ -2,7 +2,420 @@
 
 {% block content %}
 
-<p>Salut ça va ? Je suis le panier !</p>
+	<div id ="basket-main-title">
+		<div id="basket-title"></div>
+	</div>
+	<div id="basket-details">
+		<div>
+
+			<div id="basket-cards"></div>
+
+		</div>
+		<div id ="basket-pay-section">
+			<div id="basket-price-command">
+                    <div class ="basket-price-info">
+                        <div class ="basket-price-title">
+                            Commande :
+                        </div>
+                        <div id = "basket-price-price-command" class ="basket-price-price">
+                        
+                        </div>
+                    </div>
+                     <div class ="basket-price-info">
+                        <div class ="basket-price-title">
+                            Frais de port :
+                        </div>
+                        <div class ="basket-price-price">
+                            4.99 euros
+                        </div>
+                    </div>
+                     <div class ="basket-price-info">
+                        <div class ="basket-price-title">
+                            TOTAL :
+                        </div>
+                        <div id = "basket-price-price-total" class ="basket-price-price">
+                        
+                        </div>
+                    </div>  
+                    {% if session.logged_in == false %}
+
+                    <a href="{{ base_url('/user')}}">
+						<button type="submit" id="btn-basket-connection">Se Connecter</button>
+					</a>
+                    
+                    {% endif %}
+			</div>
+
+			<div class="alert alert-danger" id="alert-command-refused" onclick="hideAlert(this)" hidden>Vous avez déjà commenté cette recette</div>
+
+            {% if session.logged_in == true %}
+                <div id="basket-cb" >
+                	<div id="basket-cb-title">
+					    Informations bancaires
+				    </div>
+                    {{ form_open('',{id :"form-basket-payment"})}}
+                            <div class="form-group">
+                                <label for="payment-name">Nom titulaire</label>
+                                <input type="text" class="form-control" id="payment-name" name="name">
+                                <span class="text-danger" id="errorPaymentName">{{validation.getErrors()["name"]}}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-number">Numéro de carte</label>
+                                <input type="text" class="form-control" id="payment-number" name="number">
+                                <span class="text-danger" id="errorPaymentNumber">{{validation.getErrors()["number"]}}</span>
+                            </div>
+                            <div class ="form-group-row">
+                                <div id = "form-group-row-fchild">
+                                    <label for="payment-expiry">Date d'expiration</label>
+                                    <div id= "payment-expiry" >
+                                        <label for="payment-expiry-month">Mois</label>
+                                        <select id="input-payment-expiry-month" class="form-control" name="payment-expiry-month">
+                                        {% for i in range(1, 12) %}
+                                                <option>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <label for="payment-expiry-year">Année</label>
+                                        <select id="input-payment-expiry-year" class="form-control" name="payment-expiry-year">
+                                        {% for i in range(21, 25) %}
+                                                <option>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id ="form-group-row-schild">
+                                    <label for="payment-cvv">CVV</label>
+                                    <input type="text" class="form-control" id="payment-ccv" name="cvv">
+                                    <span class="text-danger" id="errorPaymentCVV">{{validation.getErrors()["cvv"]}}</span>
+                                </div>
+                            </div>
+                            
+                            
+                    {{ form_close() }}
+                    <button type="submit" id="btn-basket-payment">Valider Payement</button>
+                </div>
+                 {% endif %}
+
+            </div>
+		</div>
+	</div>
 
 {% endblock %}
 
+{% block script %}
+	<script>
+
+    var basket = [JSON.parse(localStorage.getItem("basket"))].flat();
+
+
+        if(basket[0] == null) {
+            const emptyList = [];
+            localStorage.setItem("basket", JSON.stringify(emptyList));
+        }
+ 
+
+    var basketTitle = document.querySelector("#basket-title");
+    $numberArticle = JSON.parse(localStorage.getItem("basket")).length;
+    basketTitle.innerHTML = "Mon Panier (" + $numberArticle +")";
+
+    var priceCommand = document.querySelector("#basket-price-price-command");
+    var priceTotal = document.querySelector("#basket-price-price-total");
+
+     priceCommand.innerHTML = "0 euro";
+        priceTotal.innerHTML = "0 euro";
+
+    const csrf = document.querySelector('input[name="csrf_nesti"]');
+    getBasket(basket, priceCommand, priceTotal);
+    
+    function getBasket(basket, priceCommand, priceTotal) {
+        
+        var basketCards = document.querySelector("#basket-cards");
+        
+        if (basket[0] != null) {
+            
+            var html = "";
+            var total = 0;
+           
+            basket.forEach(function (article, index) {
+                var image = "https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/" + article.image;
+
+                    cardArticle = document.createElement("div");
+                    cardArticle.className = "card-article-basket";
+
+                    iconDelete = document.createElement("i");
+                    iconDelete.className = "delete-button-basket fas fa-times-circle";
+                    iconDelete.setAttribute("onclick", 'deleteArticle(' + index +')');
+                
+                    articleImage = document.createElement("div");
+                    articleImage.className = "basket-article-img";
+                    articleImage.style.backgroundImage = "url(" + image + ")";
+
+                    articleBody = document.createElement("div");
+                    articleBody.className = "basket-article-body";
+
+                    articleTitle = document.createElement("h5");
+                    articleTitle.className = "basket-article-title";
+                    articleTitle.innerHTML = article.name;
+
+                    articleInfo = document.createElement("div");
+                    articleInfo.className = "basket-article-info";
+
+                    titleQuantity = document.createElement("div");
+                    titleQuantity.className = "title-quantity";
+                    titleQuantity.innerHTML = "Quantité";
+
+                    inputQuantity = document.createElement("select");
+                    inputQuantity.className = "input-quantity";
+                    inputQuantity.setAttribute("onchange", 'updateQuantityArticle(' + article.id_article +')');
+
+                    for (x = 1; x <= article.stock ; x++) {
+                        option = document.createElement("option");
+                        option.innerHTML = x;
+
+                        if (x == article.quantity ) {
+                            option.setAttribute('selected', 'selected');
+                        }
+
+                        inputQuantity.appendChild(option);
+                    } 
+
+                    priceArticle = document.createElement("div");
+                    priceArticle.className = "article-price";
+
+                    price = document.createElement("p");
+                    price.innerHTML = article.price;
+                  
+                    iconEuro = document.createElement("i");
+                    iconEuro.className = "fas fa-euro-sign";
+
+                    cardArticle.appendChild(iconDelete);
+                    cardArticle.appendChild(articleImage);
+                    articleBody.appendChild(articleTitle);
+                    cardArticle.appendChild(articleBody);
+                    articleInfo.appendChild(titleQuantity);
+                    articleInfo.appendChild(inputQuantity);
+
+                    priceArticle.appendChild(price);
+                    priceArticle.appendChild(iconEuro);
+
+                    articleInfo.appendChild(priceArticle);
+                    cardArticle.appendChild(articleInfo);
+                    basketCards.appendChild(cardArticle);
+
+                    total += (Number(article.quantity) * Number(article.price));
+           })
+
+            var fdp = total + 4.99;
+
+            priceCommand.innerHTML = " " + total.toFixed(2) + " euros";
+            priceTotal.innerHTML = " " + fdp.toFixed(2) + " euros";
+
+           var deleteButtons = document.querySelectorAll(".delete-button-basket");
+        }
+
+    }   
+     
+
+     function deleteArticle(index) {
+        var basket = (JSON.parse(localStorage.getItem("basket")));
+      
+        basket.splice(index, 1);
+        localStorage.setItem("basket", JSON.stringify(basket));
+        window.location.reload();
+     }
+
+     function updateQuantityArticle(idArticle) {
+        var basket = (JSON.parse(localStorage.getItem("basket")));
+       
+        JSON.parse(localStorage.getItem("basket")).forEach((article, index) => {
+            if (article.id_article == idArticle) { 
+                article.quantity = event.target.value 
+                basket.splice(index, 1, article) 
+            }
+        })
+
+        localStorage.setItem("basket", JSON.stringify(basket))
+        window.location.reload();
+    }
+
+
+    // AJAX SEND FORM PAYMENT
+
+    buttonPayment = document.querySelector("#btn-basket-payment");
+
+    buttonPayment.addEventListener('click', (function (e) {
+
+        e.preventDefault();
+
+        var nameBC = document.querySelector("#payment-name");
+        var errorPaymentName = document.querySelector("#errorPaymentName");
+
+        var numberBC = document.querySelector("#payment-number");
+        var errorPaymentNumber = document.querySelector("#errorPaymentNumber");
+
+        var ccvBC = document.querySelector("#payment-ccv");
+        var errorPaymentCVV = document.querySelector("#errorPaymentCVV");
+
+        if (nameBC.value === ''){
+           errorPaymentName.innerHTML = "Veuillez saisir le nom du titulaire";
+        }  else {
+            if (validCreditCardName(nameBC.value)) {
+                errorPaymentName.innerHTML = "";
+            } else {
+            errorPaymentName.innerHTML = "Votre saisie nom titulaire ne respecte pas les conditions";
+            };
+        }
+
+        if (numberBC.value === ''){
+            errorPaymentNumber.innerHTML = "Veuillez saisir votre numéro de carte";
+        }  else {
+                if (validCreditCardNumber(numberBC.value)) {
+                    errorPaymentNumber.innerHTML = "";
+                } else {
+                    errorPaymentNumber.innerHTML = "Votre saisie numéro de carte ne respecte pas les conditions";
+            }    
+        }
+
+       if (ccvBC.value === ''){
+           errorPaymentCVV.innerHTML = "Veuillez saisir votre CVV";
+        }  else {
+            if (validCreditCardCVV(ccvBC.value)) {
+                errorPaymentCVV.innerHTML = "";
+            } else {
+            errorPaymentCVV.innerHTML = "Le CVV est incorrect";
+            };
+        }
+
+        if (validCreditCardName(nameBC.value) && validCreditCardNumber(numberBC.value) && validCreditCardCVV(ccvBC.value)) {
+
+            var formBC = document.querySelector("#form-basket-payment");
+
+            addCommand().then((response) => {
+            if (response) {
+                    if (response.success) {
+
+                            nameBC.value = "";
+                            numberBC.value = "";
+                            ccvBC.value = "";
+
+                            basketMainTitle = document.querySelector("#basket-main-title");
+                            basketMainTitle.setAttribute('justify-content', 'center');
+
+                            basketTitle = document.querySelector("#basket-title");
+                            basketTitle.innerHTML = "Merci pour votre achat !";
+
+                            basketDetails = document.querySelector("#basket-details");
+                            basketDetails.setAttribute('justify-content', 'center');
+
+                            basketCards = document.querySelector("#basket-cards");
+                            basketCards.innerHTML = "";
+
+                            basketPaySection = document.querySelector("#basket-pay-section");
+                            basketPaySection.innerHTML = "";
+
+                            thanks = document.createElement("div");
+                            thanksMessage = document.createElement("p");
+                            thanks.id = "thanks-message";
+                           
+                            thanksMessage.innerHTML = "Cher client,<br>\<br>\Votre commande a bien été enregistré et vous allez recevoir un email de confirmation dans les plus brefs delais.<br>\Après reception de cet email, comptez entre 3 et 5 jours ouvrés avant que le colis vous parvienne.<br>\<br>\L'ensemble de l'équipe Nesti vous remercie pour votre commande.<br>\En espérant vous revoir très bientôt sur notre site!<br>\<br>\Nesti ";
+                            
+                            thanks.appendChild(thanksMessage);
+                            basketDetails.appendChild(thanks);
+
+                            localStorage.setItem("basket", null);
+                            
+
+                    }  else {
+                        	alertCommandRefused = document.querySelector("#alert-command-refused");
+	                        alertCommandRefused.removeAttribute("hidden");
+                    }
+
+            
+                }
+            });
+        }
+
+     })) 
+
+    
+    /**
+     * Ajax request to add a command
+    * @param obj form
+    * @returns mixed
+    */
+    async function addCommand() {
+
+    var myHeaders = new Headers();
+
+    var formData = new FormData();
+    
+    formData.append('basket', localStorage.getItem("basket"));
+
+    formData.append(csrf.name, csrf.value);
+    
+    var myInit = {
+    method: 'POST',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default',
+    body: formData
+    };
+
+    let response = await fetch('{{ base_url() }}/basket/payement', myInit);
+    try {
+    if (response.ok) {
+    return await response.json();
+    } else {
+    return false;
+    }
+    } catch (e) {
+    console.error(e.message);
+    }
+    };
+
+    function hideAlert(el) {
+    var alert = el;
+    alert.setAttribute("hidden", "");
+    };
+
+
+        // Takes a credit card string value and returns true on valid number
+    function validCreditCardNumber(value) {
+        // Accept only digits, dashes or spaces
+        if (/[^0-9-\s]+/.test(value)) return false;
+        if(value === '') return false;
+
+        // The Luhn Algorithm
+        let nCheck = 0, bEven = false;
+        value = value.replace(/\D/g, "");
+
+        for (var n = value.length - 1; n >= 0; n--) {
+            var cDigit = value.charAt(n),
+                nDigit = parseInt(cDigit, 10);
+
+            if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+
+            nCheck += nDigit;
+            bEven = !bEven;
+        }
+
+        return (nCheck % 10) == 0;
+    }
+
+    function validCreditCardName(value) {
+        var pattern = /[a-zA-ZÀ-ÿ ,.'-]{3,25}$/i;
+        return pattern.test(value); 
+    }
+
+    function validCreditCardCVV(value) {
+        var pattern = /^\d{3,4}$/;
+        return pattern.test(value); 
+    }
+
+    function hideAlert(el) {
+        var alert = el;
+        alert.setAttribute("hidden", "");
+    };
+    
+    
+    </script>
+{% endblock %}

@@ -37,7 +37,10 @@ $routes->setAutoRoute(true);
 $routes->get('', 'PagesController::home');
 $routes->get('home', 'PagesController::home');
 $routes->get('suggestions', 'PagesController::suggestions');
-$routes->get('basket', 'BasketController::basket');
+
+// BASKET
+$routes->get('basket', 'PagesController::basket');
+$routes->post('basket/payement', 'BasketController::command');
 
 // ARTICLES
 $routes->get('market', 'MarketController::market');

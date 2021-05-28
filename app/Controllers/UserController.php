@@ -30,7 +30,7 @@ class UserController extends BaseController
                     'lastname' => 'required|regex_check_name',
                     'username' => 'required|regex_check_username|is_unique[users.username_user]',
                     'password' => 'required|regex_check_password',
-                    'email'    => 'required|valid_email|is_unique[users.email_user]',
+                    'email'    => 'required|valid_email',
                     'address1' => 'required',
                     'postcode' => 'required|regex_check_postcode',
                     'city' => 'required|regex_check_city',
@@ -61,7 +61,7 @@ class UserController extends BaseController
                         'required' => "Veuillez saisir votre adresse"
                     ],
                     'email' => [
-                        'is_unique' => "Votre saisie adresse email ne respecte pas les conditions",
+                        'valid_email' => "Votre saisie adresse email ne respecte pas les conditions",
                         'required' => "Veuillez saisir votre adresse email"
                     ],
                     'city' => [

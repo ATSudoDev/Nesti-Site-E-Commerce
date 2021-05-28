@@ -102,8 +102,6 @@
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
 
-localStorage.clear();
-
 buttonArticle = document.querySelector("#btn-add-article");
 
 buttonArticle.addEventListener('click', (function (e) {
@@ -115,13 +113,15 @@ buttonArticle.addEventListener('click', (function (e) {
 	var image = "{{ article.getImageDir() }}";
 	var quantity = document.querySelector("#input-quantity").value;
 	var price = "{{ article.getPrice() }}";
+	var stock = "{{ article.getStock() }}";
 
 	var objArticle = {
 		"id_article": id_article,
 		"name": name,
 		"quantity": quantity,
 		"image": image,
-		"price": price
+		"price": price,
+		"stock": stock
 	}
 
 	oldBasket = [];
@@ -132,7 +132,8 @@ buttonArticle.addEventListener('click', (function (e) {
 
 	if (oldBasket.length == 0) {
 
-	localStorage.setItem("basket", JSON.stringify(objArticle));
+		const firstArticle = [].concat(objArticle);
+		localStorage.setItem("basket", JSON.stringify(firstArticle));
 
 	} else {
 
