@@ -2,7 +2,153 @@
 
 {% block content %}
 
-<p>Salut ça va ? Je suis le home !</p>
+	<div id="home-main-title">
+		<div id="home-title">
+			Recettes du moment
+		</div>
+	</div>
+
+	<div class="recipes-cards" id="famous-recipes"></div>
+
+	<div id="home-history-title">
+		<div id="home-history">
+			Historique de navigation
+		</div>
+	</div>
+
+	<div class="recipes-cards-home" id="history-recipes">
+		<div>
 
 {% endblock %}
 
+{% block script %}
+    <script>
+
+		if (JSON.parse(localStorage.getItem("history")) != null) { 
+            historyListRecipes = [JSON.parse(localStorage.getItem("history"))].flat();
+
+            console.log(historyListRecipes);
+
+            var historyRecipes = document.querySelector("#history-recipes");
+
+            historyListRecipes.forEach(function (recipe, index) {
+                var image = "https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/" + recipe.image;
+
+                cardRecipe = document.createElement("div");
+                cardRecipe.className = "recipe-card";
+                cardRecipe.style.marginRight = "4.535rem";
+
+
+                recipeImage = document.createElement("div");
+                recipeImage.className = "recipe-img";
+                recipeImage.style.backgroundImage = "url(" + image + ")";
+
+                recipeBody = document.createElement("div");
+                recipeBody.className = "recipe-card-body";
+
+                recipeTitle = document.createElement("h5");
+                recipeTitle.className = "recipe-card-title";
+                recipeTitle.innerHTML = recipe.name;
+
+                recipeGrade = document.createElement("div");
+                recipeGrade.className = "recipe-card-grade";
+
+                recipesGradeStars = document.createElement("div");
+                recipesGradeStars.className = "recipes-grade-stars";
+
+                var averageGrade = recipe.averageGrade;
+
+                for (var x = 0; x < 5; x++) {
+
+                    var span = document.createElement("span");
+                    span.className = "fa-stack";
+                    span.style.width = "1.25em"
+
+                    var i = document.createElement("i");
+                    i.className = "far fa-star fa-stack-1x fa-fw";
+
+                    span.appendChild(i);
+
+                    if (averageGrade > 0 ) {
+                        console.log(averageGrade);
+                        if (averageGrade >= 1 ) {
+
+                            var i2 = document.createElement("i");
+                                i2.className = "fas fa-star fa-stack-1x fa-fw";
+                                span.appendChild(i2);
+                        } else {
+                            var i3 = document.createElement("i");
+                                i3.className = "fas fa-star-half fa-stack-1x fa-fw";
+                                span.appendChild(i3);
+                        }
+
+                    }
+
+                    recipesGradeStars.appendChild(span);
+                    averageGrade = ( averageGrade - 1)
+                }
+
+                recipeGradeOutOf = document.createElement("div");
+                recipeGradeOutOf.className = "recipes-grade-out-of";
+                recipeGradeOutOf.innerHTML = "("+recipe.numberGrade+")";
+
+                recipeInfo = document.createElement("div");
+                recipeInfo.className = "recipe-info";
+
+                recipeTime = document.createElement("div");
+                recipeTime.className = "recipe-info-element";
+                recipeIconTime = document.createElement("i");
+                recipeIconTime.className = "far fa-clock";
+                recipeTextTime = document.createElement("p");
+                recipeTextTime.innerHTML = recipe.time;
+
+                recipePerson = document.createElement("div");
+                recipePerson.className = "recipe-info-element";
+                recipeIconPerson = document.createElement("i");
+                recipeIconPerson.className = "fa fa-utensils";
+                recipeTextPerson = document.createElement("p");
+                recipeTextPerson.innerHTML = recipe.person;
+
+                recipeDifficulty = document.createElement("div");
+                recipeDifficulty.className = "recipe-info-element";
+                recipeIconDifficulty = document.createElement("i");
+                recipeIconDifficulty.className = "far fa-clock";
+                recipeTextDifficulty = document.createElement("p");
+                recipeTextDifficulty.innerHTML = recipe.difficulty;
+
+                buttonRecipe = document.createElement("a");
+                buttonRecipe.className = "recipe-btn-see";
+                buttonRecipe.innerHTML = "Voir la recette";
+                buttonRecipe.setAttribute("href", "{{ base_url() }}/recipe/" + recipe.id_recipe);
+
+                recipeGrade.appendChild(recipesGradeStars);
+                recipeGrade.appendChild(recipeGradeOutOf);
+
+                recipeTime.appendChild(recipeIconTime);
+                recipeTime.appendChild(recipeTextTime);
+
+                recipePerson.appendChild(recipeIconPerson);
+                recipePerson.appendChild(recipeTextPerson);
+
+                recipeDifficulty.appendChild(recipeIconDifficulty);
+                recipeDifficulty.appendChild(recipeTextDifficulty);
+                
+                recipeInfo.appendChild(recipeTime);
+                recipeInfo.appendChild(recipePerson);
+                recipeInfo.appendChild(recipeDifficulty);
+
+                recipeBody.appendChild(recipeTitle);
+                recipeBody.appendChild(recipeGrade);
+                recipeBody.appendChild(recipeInfo);
+
+                cardRecipe.appendChild(recipeImage);
+                cardRecipe.appendChild(recipeBody);
+                cardRecipe.appendChild(buttonRecipe);
+
+                historyRecipes.appendChild(cardRecipe);
+
+            });
+        }
+
+	</script>
+	{% endblock %}

@@ -192,7 +192,66 @@
 {% block script %}
 	<script>
 
-		// AJAX SEND FORM COMMENT
+	// BROWSE HISTORY
+
+	var id_recipe = {{ recipe.id_recipe }};
+	var name = "{{recipe.name_recipe}}";
+	var image = "{{ recipe.getImageDir() }}";
+	var averageGrade = {{ recipe.getAverageGrade() }};
+	var numberGrade = {{ recipe.getNumberGrade() }};
+	var time = "{{recipe.time_recipe}}"
+	var person = {{recipe.number_person_recipe}}
+	var difficulty = {{recipe.difficulty_recipe}}
+
+	var objRecipe = {
+		"id_recipe": id_recipe,
+		"name": name,
+		"image": image,
+		"averageGrade": averageGrade,
+		"numberGrade": numberGrade,
+		"time": time,
+		"person": person,
+		"difficulty": difficulty
+	}
+
+	oldHistory = [];
+
+	if (JSON.parse(localStorage.getItem("history")) != null) {
+		oldHistory = [JSON.parse(localStorage.getItem("history"))].flat();
+	}
+
+	if (oldHistory.length == 0) {
+
+		const firstRecipe = [].concat(objRecipe);
+		localStorage.setItem("history", JSON.stringify(firstRecipe));
+
+		} else {
+
+			var newHistory = [];
+			newHistory = oldHistory.flat();
+
+			const idList = oldHistory.map(el => {
+				return el.id_recipe;
+			});
+
+			index = idList.indexOf({{ recipe.id_recipe }});
+			
+			if (index != -1) { 
+				newHistory.splice(index, 1);
+			}
+
+			newHistory.unshift(objRecipe);
+			
+			if (newHistory.length == 5) {
+				newHistory.splice(4, 1);
+			}
+
+			localStorage.setItem("history", JSON.stringify(newHistory))
+	}
+		
+		
+
+	// AJAX SEND FORM COMMENT
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
 
