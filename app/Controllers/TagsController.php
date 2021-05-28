@@ -15,7 +15,7 @@ class TagsController extends BaseController
       $recipeModel = new RecipeModel();
       $tagModel = new TagModel();
       $tagHasRecipeModel = new TagHasRecipeModel();
-      
+ 
       $tags = $tagModel->findAll();
 
       $tagHasRecipes = $tagHasRecipeModel->where("tags_id_tag", $idTag)->findAll();

@@ -9,6 +9,7 @@ use App\Models\ParagraphModel;
 use App\Models\CommentModel;
 use App\Models\GradeModel;
 use App\Models\TagModel;
+use App\Models\TagHasRecipeModel;
 
 // ENTITIES
 use App\Entities\Comment;

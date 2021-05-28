@@ -7,7 +7,6 @@ use App\Models\UserModel;
 use App\Models\UserLogModel;
 
 // ENTITIES
-use App\Entities\User;
 use App\Entities\LogUser;
 
 class ConnectionController extends BaseController
