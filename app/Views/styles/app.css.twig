@@ -114,6 +114,32 @@
 	}
 
 	{
+		# ------------ HOME ------------- #
+	}
+
+	#home-main-title,
+	#home-history-title {
+		color: #F58F29;
+		font-size: 35px;
+		margin-bottom: 0.6rem;
+	}
+
+	#home-title,
+	#home-history {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-left: 3rem;
+	}
+
+	.recipes-cards-home {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 90%;
+		margin: 1.4rem auto;
+	}
+
+	{
 		# ------------ TAGS ------------- #
 	}
 
@@ -698,10 +724,134 @@
 		margin-left: 2rem;
 		margin-bottom: 0.8rem;
 		color: #F0F7EE;
+		text-align: center;
 	}
 
 	#suggestions-robot {
 		width: 750px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	#suggestions-container-ingredient-cards {
+		position: relative;
+		margin: auto auto 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 400px;
+		height: 480px;
+	}
+
+	#suggestions-container-ingredient-cards .cardIngredient {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		text-align: center;
+		z-index: 50;
+		border: 2px solid #F0F7EE;
+		background-color: #26413C;
+		width: 400px;
+		height: 480px;
+		border-radius: 0.8rem;
+	}
+
+	#suggestions-result {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#suggestions-result-sentence {
+		text-align: center;
+		font-size: 35px;
+		margin-bottom: 0.3rem;
+		margin-top: 0;
+	}
+
+
+	.cardIngredient p {
+		font-size: 40px;
+		color: #F58F29;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.pictureDiv {
+		border: 2px solid #F0F7EE;
+		background-size: cover;
+		background-position: center;
+		width: 85%;
+		height: 75%
+	}
+
+	.buttonContainer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		width: 100%;
+		margin: 1rem auto;
+	}
+
+	.cardIngredient button {
+		height: 6rem;
+		width: 6rem;
+		border: 5px solid #F58F29;
+		cursor: pointer;
+	}
+
+
+	.buttonDislike {
+		position: relative;
+		color: #ef4444;
+		background-color: white;
+		border-radius: 100%;
+		font-size: 4rem;
+	}
+
+	.iconDislike {
+		position: relative;
+	}
+
+	.buttonLike {
+		position: relative;
+		color: #10b981;
+		background-color: white;
+		border: none;
+		border-radius: 100%;
+		font-size: 4rem;
+	}
+
+	.iconLike {
+		position: relative;
+	}
+
+	#containerButtons {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		margin: 6rem auto;
+	}
+
+	#containerButtons button {
+		font-family: 'Russo_one';
+		font-size: 25px;
+		cursor: pointer;
+		color: var(--primaryTextColor);
+		background-color: var(--primaryColor);
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		border: 1px solid var(--primaryTextColor);
+		padding: 0.375rem;
+		border-radius: 0.25rem;
+		margin: auto 2rem;
 	}
 
 
@@ -1105,7 +1255,11 @@
 		margin-bottom: 1rem;
 	}
 
-	#btn-connection, #btn-disconnection, #btn-pay, #btn-basket-payment, #btn-basket-connection {
+	#btn-connection,
+	#btn-disconnection,
+	#btn-pay,
+	#btn-basket-payment,
+	#btn-basket-connection {
 		font-weight: 700;
 		background-color: #F0F7EE;
 		color: #26413C;
@@ -1135,7 +1289,6 @@
 		cursor: pointer;
 		margin-bottom: 1rem;
 	}
-
 
 	#btn-connection:hover,
 	#btn-disconnection:hover,
@@ -1555,5 +1708,99 @@
 
 	footer p {
 		margin: 0;
+	}
+
+
+	/*************************************************** Style of the Javascript part ***************************************************/
+
+	.currentCard {
+		position: absolute;
+		z-index: 10;
+		opacity: 1;
+	}
+
+	.cardNext {
+		z-index: 5;
+		transform-origin: center;
+		transform: rotate(4deg);
+	}
+
+	.thirdCard {
+		z-index: 4;
+		transform-origin: center;
+		transform: rotate(-4deg);
+	}
+
+	.currentCard,
+	.cardNext,
+	.thirdCard,
+	.fourthCard {
+		box-shadow: 4px 5px 5px 1px #020202b0;
+	}
+
+	#sentenceRecipesAvailable {
+		font-family: 'Noto', cursive;
+		font-size: 1.7rem;
+		text-shadow: 2px 2px 4px #000000;
+	}
+
+	/* Amination for the swipe to the left */
+
+	.swipeLeft {
+		animation: swipe-left 0.6s ease-in-out;
+		z-index: 1;
+	}
+
+	/* Amination for the swipe to the right */
+
+	.swipeRight {
+		animation: swipe-right 0.6s ease-in-out;
+		z-index: 1;
+	}
+
+	/* Keyframes for the left transition */
+
+	@keyframes swipe-left {
+		0% {
+			z-index: 100;
+			transform: translateY(0px) rotate(-4deg);
+		}
+		50% {
+			transform: translateX(-120%) rotate(-5deg) translateY(-40%);
+			opacity: 0.7;
+		}
+		80% {
+			opacity: 0.4;
+		}
+		100% {
+			transform: translateX(0%) rotate(0) translateY(0%) scale(0.95);
+			opacity: 0;
+			z-index: -50;
+		}
+	}
+
+	/* Keyframes for the right transition */
+
+	@keyframes swipe-right {
+		0% {
+			z-index: 100;
+			transform: translateY(0px) rotate(4deg);
+		}
+		50% {
+			transform: translateX(120%) rotate(5deg) translateY(-40%);
+			opacity: 0.7;
+		}
+		80% {
+			opacity: 0.4;
+		}
+		100% {
+			transform: translateX(0%) rotate(0) translateY(0%) scale(0.95);
+			opacity: 0;
+			z-index: -50;
+		}
+	}
+
+	.cardIngredient {
+		animation-fill-mode: forwards;
 	}
 </style>

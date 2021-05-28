@@ -1,7 +1,57 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
+	<div id="suggestions-main-title">
+		<div id="suggestions-title">
+			Le petit robot chercheur de recettes
+		</div>
+	</div>
+	<div id="suggestions-details">
+		<div>
+			<div id="suggestions-instructions">
+				<div id="suggestions-instructions-title">
+					Instructions
+				</div>
+				<div id="suggestions-instructions-details">
+					Vous manquez d'inspiration ? Vous ne savez pas quoi cuisiner ce soir pour votre famille ? Nous avons LA SOLUTION !
+					<br><br>
+					Cliquez simplement sur le cœur si vous avez l'ingrédient à la maison. Bien sûr, si vous ne l'avait pas, cliquez sur la croix.
+					<br><br>
+					Lorsque vous pensez avoir terminé, cliquez sur le bouton nommé
+					<bolder>
+						'Consulter les recettes'
+					</bolder>
+					et notre petit robot se chargera de vous montrer de succulentes recettes rien que pour vous !
+				</div>
+			</div>
+		</div>
+		<div id="suggestions-robot">
+			<div id="suggestions-container-ingredient-cards"></div>
 
-<p>Salut ça va ? Je suis le suggestions !</p>
+			<div id="suggestions-result">
+				<p id="suggestions-result-sentence"></p>
+				<div id="suggestions-result-buttons">
+					<button id="btn-suggestions-try-again" onclick="window.location.reload()">Réessayer</button>
+					<button id="btn-suggestions-consult-recipe">Consulter les recettes</button>
+				</div>
+					{{ form_open(base_url("/recipes/suggestions"),{id:"form-suggestions"})}}
+					{{ form_close() }}
+			</div>
 
-{% endblock %}
+		</div>
+
+	</div>
+</div>
+<script>
+	const csrf = document.querySelector('input[name="csrf_nesti"]');
+
+var ingredientsJSON = {{ ingredientsJSON|json_encode|raw }};
+
+console.log(ingredientsJSON);
+
+var recipesJSON = {{ recipesJSON|json_encode|raw }};
+
+console.log(recipesJSON);
+</script>
+<script src="{{base_url('js/ingredients.js')}}" type="text/javascript"></script>
+<script src="{{base_url('js/CardIngredients.js')}}" type="text/javascript"></script>{% endblock %}

@@ -36,7 +36,11 @@ $routes->setAutoRoute(true);
 // ROUTES PAGES
 $routes->get('', 'PagesController::home');
 $routes->get('home', 'PagesController::home');
-$routes->get('suggestions', 'PagesController::suggestions');
+
+// SUGGESTIONS
+$routes->get('suggestions', 'SuggestionsController::suggestions');
+$routes->post('recipes/suggestions', 'SuggestionsController::recipes');
+
 
 // BASKET
 $routes->get('basket', 'PagesController::basket');
@@ -72,7 +76,6 @@ $routes->get('/api/category/(:alpha)',"ApiController::category/$1");
 
 $routes->get('/api/ingredients/(:num)',"ApiController::ingredients/$1");
 $routes->get('/api/steps/(:num)',"ApiController::steps/$1");
-
 
 /*
  * --------------------------------------------------------------------
