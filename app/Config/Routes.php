@@ -33,14 +33,13 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// ROUTES PAGES
-$routes->get('', 'PagesController::home');
-$routes->get('home', 'PagesController::home');
+// HOME
+$routes->get('', 'HomeController::home');
+$routes->get('home', 'HomeController::home');
 
 // SUGGESTIONS
 $routes->get('suggestions', 'SuggestionsController::suggestions');
 $routes->post('recipes/suggestions', 'SuggestionsController::recipes');
-
 
 // BASKET
 $routes->get('basket', 'PagesController::basket');

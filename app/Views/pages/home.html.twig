@@ -4,11 +4,63 @@
 
 	<div id="home-main-title">
 		<div id="home-title">
-			Recettes du moment
+			Recettes les plus populaires
 		</div>
 	</div>
 
-	<div class="recipes-cards" id="famous-recipes"></div>
+	<div class="recipes-cards" id="famous-recipes">
+        {% for recipe in recipes %}
+            <div class="recipe-card">
+                <div class="recipe-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.image}}");'></a>
+            </div>
+            <div class="recipe-card-body">
+                <div class="recipe-card-title">{{recipe.name}}</div>
+
+                <div class="recipe-card-grade">
+                    <div class="recipes-grade-stars">
+                        {% set copyGrade = recipe.averageGrade %}
+                        {% for i in range(1,5) %}
+                            <span class="fa-stack" style="width:1em">
+                                <i class="far fa-star fa-stack-1x fa-fw"></i>
+                                {% if (copyGrade > 0) %}
+                                    {% if (copyGrade >=1) %}
+                                        <i class="fas fa-star fa-stack-1x fa-fw"></i>
+                                    {% else %}
+                                        <i class="fas fa-star-half fa-stack-1x fa-fw"></i>
+                                    {% endif %}
+                                {% endif %}
+                                {% set copyGrade = (copyGrade - 1) %}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <div class = "recipes-grade-out-of" >
+                        ({{ recipe.numberGrades }})
+                    </div>
+                </div>
+
+                <div class="recipe-info">
+                    <div class="recipe-info-element">
+                        <i class="far fa-clock" aria-hidden="true"></i>
+                        <p>{{recipe.time }}</p>
+                    </div>
+                    <div class="recipe-info-element">
+                        <i class="fa fa-utensils" aria-hidden="true"></i>
+                        <p>{{recipe.numberPerson}}</p>
+                    </div>
+                    <div class="recipe-info-element">
+                        <i class="fas fa-dumbbell" aria-hidden="true"></i>
+                        <p>{{recipe.difficulty}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ base_url('/recipe/'~recipe.id_recipe) }}">
+                <button class="recipe-btn-see">Voir la recette</button>
+            </a>
+        </div>
+        {% endfor %}
+    
+    </div>
 
 	<div id="home-history-title">
 		<div id="home-history">
