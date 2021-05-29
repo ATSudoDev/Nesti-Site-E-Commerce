@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+	<div id="search-recipes-main-title">
+		<div id="search-recipes-title">
+			Recettes
+		</div>
+	</div>
+
+	<div class="recipes-cards-search" id="search-recipes">
+        {% for recipe in recipes %}
+            <div class="recipe-card" style="margin-right: 4.535rem;">
+                <div class="recipe-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/recipes/{{recipe.getImage().name_image~"."~recipe.getImage().extension_image }}");'></a>
+            </div>
+            <div class="recipe-card-body">
+                <div class="recipe-card-title">{{recipe.name_recipe}}</div>
+
+                <div class="recipe-card-grade">
+                    <div class="recipes-grade-stars">
+                        {% set copyGrade = recipe.getAverageGrade()  %}
+                        {% for i in range(1,5) %}
+                            <span class="fa-stack" style="width:1em">
+                                <i class="far fa-star fa-stack-1x fa-fw"></i>
+                                {% if (copyGrade > 0) %}
+                                    {% if (copyGrade >=1) %}
+                                        <i class="fas fa-star fa-stack-1x fa-fw"></i>
+                                    {% else %}
+                                        <i class="fas fa-star-half fa-stack-1x fa-fw"></i>
+                                    {% endif %}
+                                {% endif %}
+                                {% set copyGrade = (copyGrade - 1) %}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <div class = "recipes-grade-out-of" >
+                        ({{ recipe.getNumberGrade() }})
+                    </div>
+                </div>
+
+                <div class="recipe-info">
+                    <div class="recipe-info-element">
+                        <i class="far fa-clock" aria-hidden="true"></i>
+                        <p>{{recipe.time_recipe }}</p>
+                    </div>
+                    <div class="recipe-info-element">
+                        <i class="fa fa-utensils" aria-hidden="true"></i>
+                        <p>{{recipe.number_person_recipe}}</p>
+                    </div>
+                    <div class="recipe-info-element">
+                        <i class="fas fa-dumbbell" aria-hidden="true"></i>
+                        <p>{{recipe.difficulty_recipe}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ base_url('/recipe/'~recipe.id_recipe) }}">
+                <button class="recipe-btn-see">Voir la recette</button>
+            </a>
+        </div>
+        {% endfor %}
+    
+    </div>
+
+	<div id="search-articles-main-title">
+		<div id="search-articles-title">
+			Articles
+		</div>
+	</div>
+
+	<div class="recipes-cards-search" id="search-articles">
+      {% for article in articles %}
+		<div class="article-card" style="margin-right: 4.535rem;">
+			<div class="article-img" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImage().name_image~"."~article.getImage().extension_image }}");'></a>
+		</div>
+		<div class="article-card-body">
+			<h5 class="article-card-title">{{article.quantity_unite_article~" "~article.getMeasureUnit().name_measure_unit~" de "~article.getProduct().name_product}}</h5>
+			<div class="article-info">
+				<div class="article-info-element">
+					<div class="price-info">
+						<p>{{article.getPrice()}}</p>
+						<i class="fas fa-euro-sign" aria-hidden="true"></i>
+					</div>
+					<div class="stock-info">
+						<p class="stock" data-stock ="{{article.getStock()}}">{{article.getStock()}}</p>
+						<i class="fas fa-box"></i>
+					</div>
+				</div>
+			</div>
+
+			<a href="{{ base_url('/article/'~article.id_article) }}">
+				<button class="article-btn-see">Voir l'article</button>
+			</a>
+		</div>
+	</div>
+{% endfor %}
+{% endblock %}

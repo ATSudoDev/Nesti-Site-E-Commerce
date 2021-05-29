@@ -60,6 +60,9 @@ $routes->post('/recipe/(:num)/grade', 'RecipesController::recipeGrade/$1');
 $routes->get('/tags', 'TagsController::tags');
 $routes->get('/tag/(:num)', 'TagsController::tag/$1');
 
+// SEARCH
+$routes->post('search', 'SearchController::search');
+
 // USER
 $routes->get('user', 'PagesController::user');
 $routes->post('user/register', 'UserController::register');

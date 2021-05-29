@@ -71,7 +71,7 @@
 		border-radius: 12px;
 	}
 
-	.searchArea {
+	#searchArea {
 		width: 100%;
 		border: 3px solid #400406;
 		border-right: none;
@@ -86,7 +86,7 @@
 		background-color: rgba(0, 0, 0, 0);
 	}
 
-	.searchArea:focus {
+	#searchArea:focus {
 		color: #26413C;
 	}
 
@@ -105,6 +105,12 @@
 		background-color: #26413C;
 	}
 
+	#form-search {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+	}
+
 	.active {
 		background-color: #F58F29 !important;
 	}
@@ -118,20 +124,26 @@
 	}
 
 	#home-main-title,
-	#home-history-title {
+	#home-history-title,
+	#search-recipes-main-title,
+	#search-articles-main-title {
 		color: #F58F29;
 		font-size: 35px;
 		margin-bottom: 0.6rem;
 	}
 
 	#home-title,
-	#home-history {
+	#home-history,
+	#search-recipes-title,
+	#search-articles-title {
 		display: flex;
 		margin-bottom: 1rem;
 		margin-left: 3rem;
 	}
 
-	.recipes-cards-home {
+	.recipes-cards-home,
+	.recipes-cards-search
+	 {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -162,6 +174,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
+		flex-wrap: wrap;
 	}
 
 	#tags-content .form-check input {
@@ -200,7 +213,7 @@
 		flex-wrap: wrap;
 		justify-content: space-around;
 		width: 90%;
-		margin: 1.4rem auto;
+		margin: 1.4rem auto 0 auto;
 	}
 
 	.recipe-card {

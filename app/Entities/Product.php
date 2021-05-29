@@ -21,7 +21,5 @@ class Product extends Entity
         
         return $pictureName;
     }
-    
 
-    
 }

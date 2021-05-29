@@ -16,11 +16,15 @@
 	</div>
 
 	<div class="search">
-		<input type="text" class="searchArea" placeholder="Une recette ? Un ingrédient ? Un chef ?">
-		<button type="submit" id="searchButton">
-			<i class="fa fa-search"></i>
-		</button>
+	{{ form_open(base_url('/search'), {id :"form-search"})}}
+		<input type="text" id="searchArea" name ="searchArea" placeholder="Une recette ? Un ingrédient ?">
+	
+			<button type="submit" id="searchButton">
+				<i class="fa fa-search"></i>
+			</button>
+			
 	</div>
+	{{ form_close() }}
 
 	<div id="navbar-right">
 		<a href="{{base_url('/basket')}}">
@@ -32,3 +36,4 @@
 	</div>
 
 </div>
+				
