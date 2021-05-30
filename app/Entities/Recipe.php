@@ -13,8 +13,13 @@ class Recipe extends Entity
     public function getImage()
     {
         $imageModel = new ImageModel();
-        $image = $imageModel->find($this->fk_id_image);
-        return $image;
+
+        if ($this->fk_id_image != null ) {
+         $image = $imageModel->find($this->fk_id_image);
+        } else {
+         $image = $imageModel->find(1);
+        }
+         return $image;
     }
 
     public function getImageDir()

@@ -34,6 +34,7 @@ class HomeController extends BaseController
             $recipeWithGrade->averageGrade = $recipe->getAverageGrade();
             $recipeWithGrade->numberGrades = $recipe->getNumberGrade();
             $top4Recipes [] = $recipeWithGrade;
+
         }
 
         usort($top4Recipes, function ($r1, $r2) {

@@ -12,6 +12,7 @@ class Product extends Entity
 
     public function getPictureName(){
         $pictureName="no-image.jpg";
+        
         $articleModel = new ArticleModel();
         $articles = $articleModel ->where("fk_id_product",$this->id_product)->findAll();
         
