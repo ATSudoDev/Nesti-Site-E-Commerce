@@ -16,7 +16,7 @@
 		<div>
 			<div id="article-card-details">
 
-				<div id="article-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImageDir() }}'></div>
+				<div id="article-img-details" style='background-image: url("https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-PHP/public/images/articles/{{article.getImage().name_image~"."~article.getImage().extension_image }}'></div>
 
 				<div id="article-content-details">
 
@@ -48,7 +48,7 @@
 
 					<button type="submit" id="btn-add-article">Ajouter au panier</button>
 					{{ form_close() }}
-						<div class="alert-bot alert-success" id="alert-article" onclick="hideAlert(this)" hidden>L'article a bien été ajouté au panier</div>
+					<div class="alert-bot alert-success" id="alert-article" onclick="hideAlert(this)" hidden>L'article a bien été ajouté au panier</div>
 				</div>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 		<div>
 			<div id="article-recipes">
 				<div id="article-recipes-title">
-					Recettes liées à cet article
+					Recettes liées à cet article ({{recipes|length}})
 				</div>
 
 				<div id="article-card-recipes-content">
@@ -67,6 +67,29 @@
 						</div>
 						<div class="article-recipe-card-body">
 							<h5 class="article-recipe-card-title">{{recipe.name_recipe}}</h5>
+
+							<div class="article-recipe-card-grade">
+								<div class="article-recipes-grade-stars">
+									{% set copyGrade = recipe.getAverageGrade() %}
+									{% for i in range(1,5) %}
+										<span class="fa-stack" style="width:1em">
+											<i class="far fa-star fa-stack-1x fa-fw"></i>
+											{% if (copyGrade > 0) %}
+												{% if (copyGrade >=1) %}
+													<i class="fas fa-star fa-stack-1x fa-fw"></i>
+												{% else %}
+													<i class="fas fa-star-half fa-stack-1x fa-fw"></i>
+												{% endif %}
+											{% endif %}
+											{% set copyGrade = (copyGrade - 1) %}
+										</span>
+									{% endfor %}
+								</div>
+								<div class="article-recipes-grade-out-of">
+									({{ recipe.getNumberGrade() }})
+								</div>
+							</div>
+
 							<div class="article-recipe-info">
 								<div class="article-recipe-info-element">
 									<i class="far fa-clock" aria-hidden="true"></i>
@@ -91,12 +114,10 @@
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
-
-{% block script %}
+</div>{% endblock %}{% block script %}
 <script>
 
-// AJAX SEND FORM ARTICLE BASKET
+	// AJAX SEND FORM ARTICLE BASKET
 
 const csrf = document.querySelector('input[name="csrf_nesti"]');
 
@@ -104,59 +125,59 @@ buttonArticle = document.querySelector("#btn-add-article");
 
 buttonArticle.addEventListener('click', (function (e) {
 
-	event.preventDefault();
+event.preventDefault();
 
-	var id_article = {{ article.id_article }};
-	var name = "{{ article.getName() }}";
-	var image = "{{ article.getImageDir() }}";
-	var quantity = document.querySelector("#input-quantity").value;
-	var price = "{{ article.getPrice() }}";
-	var stock = "{{ article.getStock() }}";
+var id_article = {{ article.id_article }};
+var name = "{{ article.getName() }}";
+var image = "{{ article.getImage().name_image~"."~article.getImage().extension_image }}";
+var quantity = document.querySelector("#input-quantity").value;
+var price = "{{ article.getPrice() }}";
+var stock = "{{ article.getStock() }}";
 
-	var objArticle = {
-		"id_article": id_article,
-		"name": name,
-		"quantity": quantity,
-		"image": image,
-		"price": price,
-		"stock": stock
-	}
+var objArticle = {
+"id_article": id_article,
+"name": name,
+"quantity": quantity,
+"image": image,
+"price": price,
+"stock": stock
+}
 
-	oldBasket = [];
+oldBasket = [];
 
-	if (JSON.parse(localStorage.getItem("basket")) != null) {
-		oldBasket = [JSON.parse(localStorage.getItem("basket"))].flat();
-	}
+if (JSON.parse(localStorage.getItem("basket")) != null) {
+oldBasket = [JSON.parse(localStorage.getItem("basket"))].flat();
+}
 
-	if (oldBasket.length == 0) {
+if (oldBasket.length == 0) {
 
-		const firstArticle = [].concat(objArticle);
-		localStorage.setItem("basket", JSON.stringify(firstArticle));
+const firstArticle = [].concat(objArticle);
+localStorage.setItem("basket", JSON.stringify(firstArticle));
 
-	} else {
+} else {
 
-		var idList = oldBasket.map(el => {
-		return el.id_article
-		});
+var idList = oldBasket.map(el => {
+return el.id_article
+});
 
-		if (idList.indexOf(objArticle.id_article) != -1) {
-				
-			var finalBasket = oldBasket.map(el => {
-				if (el.id_article === objArticle.id_article) {
-						el.quantity = parseInt(el.quantity) + parseInt(objArticle.quantity);
-				}
-				return el;
-			})
+if (idList.indexOf(objArticle.id_article) != -1) {
 
-			localStorage.setItem("basket", JSON.stringify(finalBasket));
-		} else { 
-			var newBasket = oldBasket.concat(objArticle).flat()
-			localStorage.setItem("basket", JSON.stringify(newBasket))
-		}
-	}
+var finalBasket = oldBasket.map(el => {
+if (el.id_article === objArticle.id_article) {
+el.quantity = parseInt(el.quantity) + parseInt(objArticle.quantity);
+}
+return el;
+})
 
-	alertArticle = document.querySelector("#alert-article");
-	alertArticle.removeAttribute("hidden");
+localStorage.setItem("basket", JSON.stringify(finalBasket));
+} else {
+var newBasket = oldBasket.concat(objArticle).flat()
+localStorage.setItem("basket", JSON.stringify(newBasket))
+}
+}
+
+alertArticle = document.querySelector("#alert-article");
+alertArticle.removeAttribute("hidden");
 
 }))
 
