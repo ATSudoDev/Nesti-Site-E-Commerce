@@ -71,13 +71,10 @@ $routes->get('user/disconnect', 'ConnectionController::disconnect');
 
 // API
 $routes->get('/api',"ApiController::index");
-$routes->get('/api/recipes',"ApiController::recipes");
-$routes->get('/api/recipe/(:num)',"ApiController::recipe/$1");
-
-$routes->get('/api/category/(:alpha)',"ApiController::category/$1");
-
-$routes->get('/api/ingredients/(:num)',"ApiController::ingredients/$1");
-$routes->get('/api/steps/(:num)',"ApiController::steps/$1");
+$routes->get('/(:any)/api/recipes',"ApiController::recipes/$1");
+$routes->get('/(:any)/api/recipe/(:num)',"ApiController::recipe/$1/$2");
+$routes->get('/(:any)/api/category/(:alpha)',"ApiController::category/$1/$2");
+$routes->get('/(:any)/api/search/(:alpha)',"ApiController::search/$1/$2");
 
 /*
  * --------------------------------------------------------------------

@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 // MODELS
 use App\Models\RecipeModel;
-use App\Models\GradeModel;
 
 // ENTITIES
 

@@ -2,26 +2,54 @@
 
 namespace App\Controllers;
 
+// MODELS 
 use App\Models\RecipeModel;
+use App\Models\TokenModel;
+use App\Models\TokenLogModel;
+
+//ENTITIES
+use App\Entities\LogToken;
 
 class ApiController extends BaseController
 {
-    public function index()
-    {
-        return view('api_help');
-    }
 
-    public function recipes()
+    public function recipes($token)
     {
-        $model = new RecipeModel();
-        $recipes = $model->findAllForApi();
+        $tokenModel = new TokenModel();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
-        echo json_encode($recipes);
+        
+        if ($tokenDB != null) {
+            
+            $model = new RecipeModel();
+            $recipes = $model->findAllForApi();
+
+            $logTokenModel = new TokenLogModel();
+
+            $log_token = new LogToken();
+            $log_token->fill([
+                'fk_id_token' => $tokenDB[0]->id_token
+            ]);
+            $logTokenModel->insert($log_token);
+
+            echo json_encode($recipes);
+
+         } else {
+            echo json_encode("Le token est invalide");
+        }
+
         die;
     }
 
-    public function recipe($id)
+    public function recipe($token, $id)
     {
+
+        $tokenModel = new TokenModel();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
+        header('Content-Type: application/json');
+        
+        if ($tokenDB != null) {
+
         $model = new RecipeModel();
         $recipes = $model->find($id);
 
@@ -34,35 +62,79 @@ class ApiController extends BaseController
         $recipes->ingredients = $ingredients;
         $recipes->steps = $steps;
 
-        header('Content-Type: application/json');
+        $logTokenModel = new TokenLogModel();
+
+        $log_token = new LogToken();
+        $log_token->fill([
+            'fk_id_token' => $tokenDB[0]->id_token
+        ]);
+        $logTokenModel->insert($log_token);
+
         echo json_encode($recipes);
+        
+    } else {
+        echo json_encode("Le token est invalide");
+    }
+        
         die;
     }
 
-    public function category($cat)
+    public function category($token, $cat)
     {
+
+        $tokenModel = new TokenModel();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
+        header('Content-Type: application/json');
+        
+        if ($tokenDB != null) {
+
         $model = new RecipeModel();
         $recipes = $model->findCatForApi($cat);
-        header('Content-Type: application/json');
+
+        $logTokenModel = new TokenLogModel();
+
+        $log_token = new LogToken();
+        $log_token->fill([
+            'fk_id_token' => $tokenDB[0]->id_token
+        ]);
+        $logTokenModel->insert($log_token);
+
         echo json_encode($recipes);
+        
+    } else {
+        echo json_encode("Le token est invalide");
+    }
+        
         die;
     }
 
-    public function ingredients($id)
-    {
-        $model = new RecipeModel();
-        $recipes = $model->findIngredientRecipeForApi($id);
-        header('Content-Type: application/json');
-        echo json_encode($recipes);
-        die;
-    }
 
-    public function steps($id)
-    {
-        $model = new RecipeModel();
-        $recipes = $model->findStepsRecipeForApi($id);
+    public function search($token, $keyword){
+
+        $tokenModel = new TokenModel();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
+        
+        if ($tokenDB != null) {
+
+        $recipeModel = new RecipeModel();
+        $recipes = $recipeModel->findSearchRecipeForApi($keyword);
+
+        $logTokenModel = new TokenLogModel();
+
+        $log_token = new LogToken();
+        $log_token->fill([
+            'fk_id_token' => $tokenDB[0]->id_token
+        ]);
+        $logTokenModel->insert($log_token);
+
         echo json_encode($recipes);
+       
+    } else {
+
+            echo json_encode("Le token est invalide");
+        }
+        
         die;
     }
 

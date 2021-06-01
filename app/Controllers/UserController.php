@@ -65,7 +65,7 @@ class UserController extends BaseController
                         'required' => "Veuillez saisir votre adresse email"
                     ],
                     'city' => [
-                        'is_unique' => "Votre saisie ville ne respecte pas les conditions",
+                        'regex_check_city' => "Votre saisie ville ne respecte pas les conditions",
                         'required' => "Veuillez saisir votre ville"
                     ]
 
