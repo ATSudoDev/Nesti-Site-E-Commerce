@@ -204,7 +204,7 @@ document.getElementById("pwd-special").style.color = '#F58F29'
 
 // AJAX SEND FORM CONNECTION
 
-const csrf = document.querySelector('input[name="csrf_nesti"]');
+const csrf = document.querySelectorAll('input[name="csrf_nesti"]');
 
 buttonConnection = document.getElementById("btn-connection");
 
@@ -257,7 +257,8 @@ document.querySelector("#errorConnectionPassword").innerHTML = response.validati
 }
 
 // Refresh CSRF
-csrf.setAttribute('value', response.csrf_token);
+csrf[0].setAttribute('value', response.csrf_token);
+csrf[1].setAttribute('value', response.csrf_token);
 
 }
 });
@@ -276,7 +277,7 @@ async function connectUser(obj) {
 var myHeaders = new Headers();
 
 let formData = new FormData(obj);
-formData.append(csrf.name, csrf.value);
+formData.append(csrf[1].name, csrf[1].value);
 
 var myInit = {
 method: 'POST',
@@ -336,6 +337,7 @@ document.querySelector("#errorRegisterCity").innerHTML = "";
 document.querySelector("#errorRegisterPostcode").innerHTML = "";
 
 } else {
+
 document.querySelector("#errorRegisterLastname").innerHTML = response.validation['lastname'] || "";
 document.querySelector("#errorRegisterFirstname").innerHTML = response.validation['firstname'] || "";
 document.querySelector("#errorRegisterEmail").innerHTML = response.validation['email'] || "";
@@ -347,8 +349,11 @@ document.querySelector("#errorRegisterCity").innerHTML = response.validation['ci
 document.querySelector("#errorRegisterPostcode").innerHTML = response.validation['postcode'] || "";
 }
 
+
 // Refresh CSRF
-csrf.setAttribute('value', response.csrf_token);
+csrf[0].setAttribute('value', response.csrf_token);
+csrf[1].setAttribute('value', response.csrf_token);
+
 }
 });
 
@@ -365,6 +370,7 @@ async function addUser(obj) {
 var myHeaders = new Headers();
 
 let formData = new FormData(obj);;
+
 
 var myInit = {
 method: 'POST',
