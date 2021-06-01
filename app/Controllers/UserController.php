@@ -45,7 +45,7 @@ class UserController extends BaseController
                         'required' => "Veuillez saisir votre prénom"
                     ],
                     'username' => [
-                        'regex_check_username' => "Votre saisie nom d'utilisateur ne respecte pas les conditions",
+                        'regex_check_username' => "Votre saisie nom d'utilisateur ne respecte pas les conditions. Il doit contenir entre 3 et 20 caractères.",
                         'is_unique' => "Ce nom d'utilisateur est déjà pris",
                         'required' => "Veuillez saisir un nom d'utilisateur"
                     ],

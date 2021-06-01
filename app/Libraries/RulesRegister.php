@@ -24,7 +24,7 @@ class RulesRegister
 
     public function regex_check_username($str)
     {
-        if (!preg_match("/^[a-zA-ZÀ-ÿ0-9._-]{7,20}$/", $str)) {
+        if (!preg_match("/^[a-zA-ZÀ-ÿ0-9._-]{3,20}$/", $str)) {
             return FALSE;
         } else {
             return TRUE;
