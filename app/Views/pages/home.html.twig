@@ -64,7 +64,7 @@
 
 	<div id="home-history-title">
 		<div id="home-history">
-			Historique de navigation
+		
 		</div>
 	</div>
 
@@ -76,10 +76,13 @@
 {% block script %}
     <script>
 
-		if (JSON.parse(localStorage.getItem("history")) != null) { 
-            historyListRecipes = [JSON.parse(localStorage.getItem("history"))].flat();
+         var titleHistory = document.querySelector("#home-history");
 
-            console.log(historyListRecipes);
+		if (JSON.parse(localStorage.getItem("history")) != null) { 
+
+            titleHistory.innerHTML = "Historique de navigation"
+
+            historyListRecipes = [JSON.parse(localStorage.getItem("history"))].flat();
 
             var historyRecipes = document.querySelector("#history-recipes");
 
@@ -200,6 +203,8 @@
                 historyRecipes.appendChild(cardRecipe);
 
             });
+        } else {
+            	titleHistory.innerHTML = "";
         }
 
 	</script>
