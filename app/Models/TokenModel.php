@@ -8,7 +8,7 @@ class TokenModel extends Model
 {
     protected $table = 'token';
     protected $primaryKey = 'id_token';
-    protected $allowedFields = ['id_token', 'value_token'];
+    protected $allowedFields = ['id_token', 'value_token', 'from_where'];
     protected $returnType = 'App\Entities\Token';
 
 }

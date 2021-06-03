@@ -12,6 +12,19 @@ class RecipeModel extends Model
     protected $allowedFields = ['id_recipe', 'name_recipe', 'difficulty_recipe', 'numberperson_recipe', 'state_recipe', 'time_recipe', 'fk_id_image', 'fk_id_chief']; 
     protected $returnType = 'App\Entities\Recipe';
 
+
+    
+    public function findAllForApi()
+    {
+        $query = $this->db->query('SELECT tags.tag_name, recipes.id_recipe, recipes.name_recipe, recipes.time_recipe, recipes.difficulty_recipe, users.username_user, recipes.number_person_recipe, CONCAT(images.name_image, "." , images.extension_image) as img FROM tags 
+        INNER JOIN tags_has_recipes ON tags_has_recipes.tags_id_tag = tags.id_tag 
+        INNER JOIN recipes ON recipes.id_recipe = tags_has_recipes.recipes_id_recipes
+        INNER JOIN chiefs ON recipes.fk_id_chief = chiefs.fk_id_user
+        INNER JOIN users ON chiefs.fk_id_user = users.id_user
+        INNER JOIN images ON recipes.fk_id_image = images.id_image');
+        return $query->getResult();
+    }
+
     public function findCatForApi($cat)
     {
         $query = $this->db->query('SELECT tags.tag_name, recipes.id_recipe, recipes.name_recipe, recipes.time_recipe, recipes.difficulty_recipe, users.username_user, recipes.number_person_recipe, CONCAT(images.name_image, "." , images.extension_image) as img FROM tags 
