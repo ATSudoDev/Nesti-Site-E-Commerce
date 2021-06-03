@@ -49,6 +49,7 @@
 					<button type="submit" id="btn-add-article">Ajouter au panier</button>
 					{{ form_close() }}
 					<div class="alert-bot alert-success" id="alert-article" onclick="hideAlert(this)" hidden>L'article a bien été ajouté au panier</div>
+					<div class="alert-bot alert-danger" id="alert-stock" onclick="hideAlert(this)" hidden>Il n'y a plus de stock disponible pour cet article</div>
 				</div>
 			</div>
 		</div>
@@ -124,7 +125,7 @@ const csrf = document.querySelector('input[name="csrf_nesti"]');
 buttonArticle = document.querySelector("#btn-add-article");
 
 buttonArticle.addEventListener('click', (function (e) {
-
+alert = true;
 event.preventDefault();
 
 var id_article = {{ article.id_article }};
@@ -156,28 +157,43 @@ localStorage.setItem("basket", JSON.stringify(firstArticle));
 
 } else {
 
-var idList = oldBasket.map(el => {
-return el.id_article
-});
+	var idList = oldBasket.map(el => {
+	return el.id_article
+	});
 
-if (idList.indexOf(objArticle.id_article) != -1) {
+	if (idList.indexOf(objArticle.id_article) != -1) {
 
-var finalBasket = oldBasket.map(el => {
-if (el.id_article === objArticle.id_article) {
-el.quantity = parseInt(el.quantity) + parseInt(objArticle.quantity);
+	var finalBasket = oldBasket.map(el => {
+			if (el.id_article === objArticle.id_article) {
+			checkQuantity = parseInt(el.quantity) + parseInt(objArticle.quantity);
+					
+					if (checkQuantity > el.stock) {
+						el.quantity = el.stock
+						alert = "false";
+					} else {
+						el.quantity = checkQuantity 
+					}
+			}
+		return el;
+	})
+
+		localStorage.setItem("basket", JSON.stringify(finalBasket));
+	} else {
+		var newBasket = oldBasket.concat(objArticle).flat()
+		localStorage.setItem("basket", JSON.stringify(newBasket))
+	}
 }
-return el;
-})
 
-localStorage.setItem("basket", JSON.stringify(finalBasket));
-} else {
-var newBasket = oldBasket.concat(objArticle).flat()
-localStorage.setItem("basket", JSON.stringify(newBasket))
-}
-}
-
+if (alert == true) {
 alertArticle = document.querySelector("#alert-article");
 alertArticle.removeAttribute("hidden");
+alertStock.setAttribute("hidden", "");
+} else {
+	alertStock = document.querySelector("#alert-stock");
+	alertStock.removeAttribute("hidden");
+	alertArticle.setAttribute("hidden", "");
+}
+
 
 }))
 
