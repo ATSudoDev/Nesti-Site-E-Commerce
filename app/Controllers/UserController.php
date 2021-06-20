@@ -83,6 +83,7 @@ class UserController extends BaseController
                 $username = $this->request->getPost('username');
                 $email = $this->request->getPost('email');
                 $password = $this->request->getPost('password');
+                $passwordEncrypted = password_hash($password, PASSWORD_BCRYPT);
                 $address1 = $this->request->getPost('address1');
                 $address2 = $this->request->getPost('address2');
                 $postcode = $this->request->getPost('postcode');
@@ -105,7 +106,7 @@ class UserController extends BaseController
                     'firstname_user' => $firstname,
                     'username_user' => $username,
                     'email_user' => $email,
-                    'password_user' => $password,
+                    'password_user' => $passwordEncrypted,
                     'address1_user' => $address1,
                     'address2_user' => $address2,
                     'postcode_user' => $postcode,

@@ -4,6 +4,7 @@ namespace App\Libraries;
 
 class RulesRegister
 {
+    //Regex for the name
     public function regex_check_name($str)
     {
         if (!preg_match("/^[a-zA-ZÀ-ÿ ,.'-]{3,20}+$/i", $str)) {
@@ -13,6 +14,7 @@ class RulesRegister
         }
     }
 
+    //Regex for the password
     public function regex_check_password($str)
     {
         if (!preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$&+,:;=?@#|'<>.-^*()%!])(?=\\S+$).{12,}$/", $str)) {
@@ -22,6 +24,7 @@ class RulesRegister
         }
     }
 
+    //Regex for the username
     public function regex_check_username($str)
     {
         if (!preg_match("/^[a-zA-ZÀ-ÿ0-9._-]{3,20}$/", $str)) {

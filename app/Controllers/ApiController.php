@@ -16,7 +16,7 @@ class ApiController extends BaseController
     public function recipes($token)
     {
         $tokenModel = new TokenModel();
-        $tokenDB = $tokenModel->where('value_token', $token)->where('application', 'mobile')->find();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
         
         if ($tokenDB != null) {
@@ -63,37 +63,45 @@ class ApiController extends BaseController
     {
 
         $tokenModel = new TokenModel();
-        $tokenDB = $tokenModel->where('value_token', $token)->where('application', 'mobile')->find();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
         
         // If the token is right, find data
         if ($tokenDB != null) {
 
-        $model = new RecipeModel();
-        $recipes = $model->find($id);
-        $ingredients = $model->findIngredientRecipeForApi($id);
-        $steps = $model->findStepsRecipeForApi($id);
-        
-        $recipes->ingredients = $ingredients;
-        $recipes->steps = $steps;
+            $model = new RecipeModel();
+            $recipes = $model->find($id);
+            
+            if ($recipes != null) {
 
-        // Add log token in the DB
-        $logTokenModel = new TokenLogModel();
+                $ingredients = $model->findIngredientRecipeForApi($id);
+                $steps = $model->findStepsRecipeForApi($id);
+                
+                $recipes->ingredients = $ingredients;
+                $recipes->steps = $steps;
 
-        $log_token = new LogToken();
-        $log_token->fill([
-            'fk_id_token' => $tokenDB[0]->id_token,
-            'from_where'  => $tokenDB[0]->application
-        ]);
-        $logTokenModel->insert($log_token);
+                // Add log token in the DB
+                $logTokenModel = new TokenLogModel();
 
-        echo json_encode($recipes);
+                $log_token = new LogToken();
+                $log_token->fill([
+                    'fk_id_token' => $tokenDB[0]->id_token,
+                    'from_where'  => $tokenDB[0]->application
+                ]);
+                $logTokenModel->insert($log_token);
+
+                echo json_encode($recipes);
+
+            } else {
+                // If the recipe doesn't exist, error message
+                echo json_encode("La recette n'existe pas");
+            }
         
-    } else {
-        // If the token is wrong, error message
-        echo json_encode("Le token est invalide");
-    }
-        
+        } else {
+            // If the token is wrong, error message
+            echo json_encode("Le token est invalide");
+        }
+
         die;
     }
 
@@ -101,7 +109,7 @@ class ApiController extends BaseController
     {
 
         $tokenModel = new TokenModel();
-        $tokenDB = $tokenModel->where('value_token', $token)->where('application', 'mobile')->find();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
         
         if ($tokenDB != null) {
@@ -131,7 +139,7 @@ class ApiController extends BaseController
     public function search($token, $keyword){
 
         $tokenModel = new TokenModel();
-        $tokenDB = $tokenModel->where('value_token', $token)->where('application', 'mobile')->find();
+        $tokenDB = $tokenModel->where('value_token', $token)->find();
         header('Content-Type: application/json');
         
         if ($tokenDB != null) {

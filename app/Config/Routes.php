@@ -69,7 +69,7 @@ $routes->post('user/register', 'UserController::register');
 $routes->post('user/connection', 'ConnectionController::connection');
 $routes->get('user/disconnect', 'ConnectionController::disconnect');
 
-// API
+// Routes for the API (mobile and documentation)
 $routes->get('/api',"ApiController::index");
 $routes->get('/(:any)/api/recipes',"ApiController::recipes/$1");
 $routes->get('/(:any)/api/recipe/(:num)',"ApiController::recipe/$1/$2");
