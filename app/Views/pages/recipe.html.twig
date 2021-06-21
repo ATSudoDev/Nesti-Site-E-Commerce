@@ -253,7 +253,7 @@
 
 	// AJAX SEND FORM COMMENT
 
-const csrf = document.querySelector('input[name="csrf_nesti"]');
+const csrf = document.querySelectorAll('input[name="csrf_nesti"]');
 
 buttonComment = document.querySelector("#btn-send-comment");
 
@@ -295,7 +295,9 @@ document.querySelector("#errorCommentText").innerHTML = response.validation['con
 }
 
 // Refresh CSRF
-csrf.setAttribute('value', response.csrf_token);
+csrf[0].setAttribute('value', response.csrf_token);
+csrf[1].setAttribute('value', response.csrf_token);
+
 }
 });
 
@@ -405,8 +407,9 @@ alertGradeAlready.removeAttribute("hidden");
 }
 
 // Refresh CSRF
+csrf[0].setAttribute('value', response.csrf_token);
+csrf[1].setAttribute('value', response.csrf_token);
 
-csrf.setAttribute('value', response.csrf_token);
 }
 });
 
@@ -422,7 +425,7 @@ var myHeaders = new Headers();
 let formData = new FormData();
 
 formData.append('grade', grade);
-formData.append(csrf.name, csrf.value);
+formData.append(csrf[1].name, csrf[1].value);
 
 var myInit = {
 method: 'POST',

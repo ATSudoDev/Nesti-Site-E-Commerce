@@ -41,7 +41,7 @@ class HomeController extends BaseController
         });
 
         $resultRecipes = [];
-        $resultRecipes = array_slice($top4Recipes, 0, 4);
+        $resultRecipes = array_slice($top4Recipes, 0, 3);
 
         $data["loc"] = "home";
         $data["recipes"] = $resultRecipes;
