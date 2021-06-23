@@ -5,8 +5,6 @@ namespace App\Controllers;
 // MODELS
 use App\Models\RecipeModel;
 
-// ENTITIES
-
 class HomeController extends BaseController
 {
     /**
@@ -19,7 +17,7 @@ class HomeController extends BaseController
 
         $recipes = $recipeModel->where("state_recipe", "a")->findAll();
 
-        $top4Recipes = [];
+        $top3Recipes = [];
 
         foreach ($recipes as $recipe) {
 
@@ -32,16 +30,15 @@ class HomeController extends BaseController
             $recipeWithGrade->image = $recipe->getImageDir();
             $recipeWithGrade->averageGrade = $recipe->getAverageGrade();
             $recipeWithGrade->numberGrades = $recipe->getNumberGrade();
-            $top4Recipes [] = $recipeWithGrade;
-
+            $top3Recipes [] = $recipeWithGrade;
         }
 
-        usort($top4Recipes, function ($r1, $r2) {
+        usort($top3Recipes, function ($r1, $r2) {
             return $r2->averageGrade <=> $r1->averageGrade;
         });
 
         $resultRecipes = [];
-        $resultRecipes = array_slice($top4Recipes, 0, 3);
+        $resultRecipes = array_slice($top3Recipes, 0, 3);
 
         $data["loc"] = "home";
         $data["recipes"] = $resultRecipes;

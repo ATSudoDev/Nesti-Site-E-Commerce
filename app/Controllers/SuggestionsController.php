@@ -11,7 +11,6 @@ use App\Models\TagModel;
 
 // ENTITIES
 
-
 class SuggestionsController extends BaseController
 {
     public function suggestions()
