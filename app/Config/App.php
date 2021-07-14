@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'https://teillier.needemand.com/realisations/Projet_Nesti/Nesti-Project-CodeIgniter/public/';
+	public $baseURL = 'http://projets.teillieraxel.com/nesti-site-e-commerce/public/';
 
 	/**
 	 * --------------------------------------------------------------------------

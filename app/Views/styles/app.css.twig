@@ -6,7 +6,9 @@
 		background-color: #F0F7EE;
 	}
 
-	{# ------------- NAVBAR ------------- #}
+	{
+		# ------------- NAVBAR ------------- #
+	}
 
 	#navbar {
 		display: flex;
@@ -117,7 +119,18 @@
 		color: #F58F29 !important;
 	}
 
-	{# ------------ HOME ------------- #}
+	@media all and (max-width: 1488px) {
+
+		#navbar-left > a,
+		#searchArea {
+			font-size: 20px;
+		}
+
+	}
+
+	{
+		# ------------ HOME ------------- #
+	}
 
 	#home-main-title,
 	#home-history-title,
@@ -143,10 +156,13 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		width: 90%;
-		margin-left: 8.2rem;
+		margin: 1.4rem 5% 0;
+		justify-content: space-around;
 	}
 
-	{# ------------ TAGS ------------- #}
+	{
+		# ------------ TAGS ------------- #
+	}
 
 	#recipes-tags {
 		display: flex;
@@ -196,7 +212,9 @@
 		transform: scale(1.08);
 	}
 
-	{# ------------ RECIPES ------------- #}
+	{
+		# ------------ RECIPES ------------- #
+	}
 
 	.recipes-cards {
 		display: flex;
@@ -204,7 +222,7 @@
 		flex-wrap: wrap;
 		justify-content: space-around;
 		width: 90%;
-		margin: 1.4rem auto 0;
+		margin: 1.4rem 5% 0;
 	}
 
 	.recipe-card {
@@ -362,7 +380,9 @@
 		color: #F58F29;
 	}
 
-	{# ------------ PAGE INFO RECIPE ------------- #}
+	{
+		# ------------ PAGE INFO RECIPE ------------- #
+	}
 
 	#breadCrumb-details {
 		display: flex;
@@ -676,7 +696,26 @@
 		width: 660px;
 	}
 
-	{# ------------- SUGGESTIONS ------------- #}
+	@media all and (max-width: 1738px) {
+
+		#recipe-details {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	@media all and (max-width: 1784px) {
+
+		#recipe-comments-content {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	{
+		# ------------- SUGGESTIONS ------------- #
+	}
 
 	#suggestions-main-title {
 		color: #F58F29;
@@ -850,8 +889,18 @@
 		margin: auto 2rem;
 	}
 
+	@media all and (max-width: 1738px) {
 
-	{# ------------- MARKET ------------- #}
+		#suggestions-details {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+
+	{
+		# ------------- MARKET ------------- #
+	}
 
 	.articles-cards {
 		display: flex;
@@ -957,9 +1006,11 @@
 		margin-left: 3rem;
 	}
 
-	
-		 {# ------------- PAGE INFO ARTICLE -------------  #}
-	
+
+	{
+		# ------------- PAGE INFO ARTICLE ------------- #
+	}
+
 
 	#breadCrumb-details-article > *,
 	#breadCrumb-details-article a p {
@@ -980,7 +1031,6 @@
 		margin-left: 10rem;
 		margin-right: 10rem;
 	}
-
 
 	#article-card-details {
 		border: 1px solid #F0F7EE;
@@ -1218,8 +1268,19 @@
 		height: 3rem;
 	}
 
+	@media all and (max-width: 1738px) {
 
-	{# ------------- ACCOUNT ------------- #}
+		#article-details {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+
+	{
+		# ------------- ACCOUNT ------------- #
+	}
 
 	#user-data {
 		color: #F0F7EE;
@@ -1456,7 +1517,18 @@
 		cursor: pointer;
 	}
 
-	{# ------------- BASKET ------------- #}
+	@media all and (max-width: 1738px) {
+
+		#account {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	{
+		# ------------- BASKET ------------- #
+	}
 
 	#basket-details {
 		display: flex;
@@ -1697,8 +1769,19 @@
 		margin-bottom: 3rem;
 	}
 
+	@media all and (max-width: 1738px) {
 
-	{# ------------- FOOTER ------------- #}
+		#basket-details {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+
+	{
+		# ------------- FOOTER ------------- #
+	}
 
 	footer {
 		display: flex;
