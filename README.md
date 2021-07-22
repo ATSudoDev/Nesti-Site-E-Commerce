@@ -48,3 +48,4 @@
 - IDE : [*Visual Studio Code*](https://code.visualstudio.com/)
 - Librairies : [*CodeIgniter*](https://codeigniter.com/) et [*Twig*](https://twig.symfony.com/)
 - Logiciel : [*FileZilla*](https://filezilla-project.org/)
+- Base de données : [*PHPMyAdmin*](https://www.phpmyadmin.net/)
