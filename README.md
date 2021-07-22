@@ -26,6 +26,6 @@ L’objectif du projet était de développer une application web simple d’util
 
 **OUTILS UTILISÉS**
 
-IDE : *Visual Studio Code*
-Librairies : *CodeIgniter*, *Twig*
-Logiciel : *FileZilla*
+- IDE : *Visual Studio Code*,
+- Librairies : *CodeIgniter*, *Twig*;
+- Logiciel : *FileZilla*
