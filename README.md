@@ -33,7 +33,7 @@
 
 - Utilisation du framework *CodeIgniter* et du moteur de templates *Twig*,
 - La validation du payement s'effectue que si les informations bancaires renseignées par le client respectent les conditions de l’algorithme de Luhn,
-- Ce projet partage la même base de données (*MySQL*) qu'un autre projet nommé *Nesti - Site Administratif* [(lien)](https://github.com/Axel-Teillier/Nesti-Site-Administratif),
+- Ce projet partage la même base de données (*MySQL*) qu'un autre projet nommé [*Nesti - Site Administratif*](https://github.com/Axel-Teillier/Nesti-Site-Administratif),
 - Le site internet comporte un système de panier pour l'achat des articles ainsi qu'un historique de navigation. Les informations du panier et de l'historique de navigation sont enregistrées via le *local storage* du navigateur internet et non via des cookies,
 - Un système de tag (catégorie) ainsi qu'une barre de recherche ont été ajoutés afin de permettre au client de pouvoir trier les recettes ou de chercher directement une recette qu’il souhaiterait réaliser.
 
