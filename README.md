@@ -2,10 +2,11 @@
 
 [Lien du projet](https://projets.teillieraxel.com/nesti-site-e-commerce/public/)
 
-**INDEX**
+## INDEX
 - 
 
-- [OBJECTIF DU PROJET] (#OBJECTIF DU PROJET)
+- [OBJECTIF DU PROJET] (##OBJECTIF DU PROJET),
+- 
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
 
