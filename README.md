@@ -19,12 +19,12 @@
 
 ## Contexte
 
- L'entreprise Nesti est une entreprise fictive ayant comme objectif de se digitaliser et ainsi développer un environnement d’e-commerce afin d’agrandir son marché. Pour ce faire, l’entreprise a fait appel à mes services afin d’obtenir un site internet vitrine de type e-shop permettant à ses clients d’accéder à de multiples recettes de desserts et pâtisseries et d’acheter directement des ingrédients et ustensiles qui sont en lien avec ces recettes.
+  L'entreprise Nesti est une entreprise fictive ayant comme objectif de se digitaliser et ainsi développer un environnement d’e-commerce afin d’agrandir son marché. Pour ce faire, l’entreprise a fait appel à mes services afin d’obtenir un site internet vitrine de type e-shop permettant à ses clients d’accéder à de multiples recettes de desserts et pâtisseries et d’acheter directement des ingrédients et ustensiles qui sont en lien avec ces recettes.
 
 
 ## Objectif
 
- L’objectif du projet était de développer une application web simple d’utilisation avec un design attrayant permettant d’accéder à une multitude de recettes détaillées. Le site devait également permettre à la clientèle d’acheter directement et simplement les produits mentionnés dans les recettes via un système e-commerce de commandes sécurisées.
+  L’objectif du projet était de développer une application web simple d’utilisation avec un design attrayant permettant d’accéder à une multitude de recettes détaillées. Le site devait également permettre à la clientèle d’acheter directement et simplement les produits mentionnés dans les recettes via un système e-commerce de commandes sécurisées.
 
 
 ## Éléments significatifs
