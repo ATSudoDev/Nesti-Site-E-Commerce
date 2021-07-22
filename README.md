@@ -41,7 +41,7 @@
 
 - Chaque recette ou article sont affichés sous forme de carte avec l’essentiel des informations importantes mise en avant,
 - Utilisation d'une palette de couleur que j'ai nommée *mangue-chocolat-menthe* ayant pour but de stimuler l'appétit du visiteur,
-- Utilisée de la police *Caveat* afin de donner à l’utilisateur la sensation d’accéder à des recettes dites *fait maison* apportant un côté traditionnel au site.
+- Utilisation de la police *Caveat* afin de donner à l’utilisateur la sensation d’accéder à des recettes dites *fait maison* apportant un côté traditionnel au site.
 
 ## Outils et logiciels utilisés
 
