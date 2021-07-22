@@ -75,7 +75,7 @@
 
 - Comporte une page *utilisateur* afin de :
   - Permettre à un utilisateur de s’inscrire et de créer un compte Nesti,
-  - Permettre à un utilisateur de se connecter s’il possède déjà un compte Nesti. 
+  - Permettre à un utilisateur de se connecter de manière sécurisée s’il possède déjà un compte Nesti.
   
   S’il est connecté, l’utilisateur peut :
     - Noter une recette,
