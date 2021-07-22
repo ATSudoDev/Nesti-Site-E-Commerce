@@ -10,7 +10,7 @@
 - [Éléments significatifs](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-significatifs)
   - [Partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
   - [Partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
-- [Description fonctionnelle des besoins](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#description-fonctionnelle-des-besoins)
+- [Description fonctionnelle](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#description-fonctionnelle-des-besoins)
 - [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ## Aperçu
@@ -44,7 +44,7 @@
 - Utilisation d'une palette de couleur que j'ai nommée *mangue-chocolat-menthe* ayant pour but de stimuler l'appétit du visiteur,
 - Utilisation de la police *Caveat* afin de donner à l’utilisateur la sensation d’accéder à des recettes dites *fait maison* apportant un côté traditionnel au site.
 
-## Description fonctionnelle des besoins
+## Description fonctionnelle
 
 - Permettre à l’utilisateur d’accéder aux détails d’une recette :
   - Accéder au nom de la recette,
