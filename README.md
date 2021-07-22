@@ -5,7 +5,7 @@
 ## INDEX
 - 
 
-- [OBJECTIF DU PROJET] (https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet),
+- ([OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)),
 - 
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
