@@ -65,17 +65,17 @@
   - Voir les recettes en lien avec cet article,
   - Ajouter une quantité de cet article dans son panier,
   
-- Comporte une page d'accueil contenant une section des recettes les mieux notées mais aussi une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
+- Comporte une page *accueil* contenant une section des recettes les mieux notées mais aussi une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
 
 - Comporte une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
 
-- Comporte une page de suggestions permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
+- Comporte une page *suggestions* permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
 
-- Comporte une page dite *panier* permettant à l’utilisateur d’avoir un récapitulatif des articles qu'il va acheter et de proposer le règlement sécurisé de la commande,
+- Comporte une page *panier* permettant à l’utilisateur d’avoir un récapitulatif des articles qu'il va acheter et de proposer le règlement sécurisé de la commande,
 
-- Comporte une page utilisateur afin de :
-  - Permettant à un utilisateur de s’inscrire et de créer un compte Nesti,
-  - Permettant à un utilisateur de se connecter s’il possède déjà un compte Nesti. 
+- Comporte une page *utilisateur* afin de :
+  - Permettre à un utilisateur de s’inscrire et de créer un compte Nesti,
+  - Permettre à un utilisateur de se connecter s’il possède déjà un compte Nesti. 
   
   S’il est connecté, l’utilisateur peut :
     - Noter une recette,
