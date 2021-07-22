@@ -46,6 +46,8 @@
 
 ## Description fonctionnelle
 
+- Proposition de recettes avec la possibilité de les ranger par catégories (système de tags) afin de faciliter la recherche aux utilisateurs,
+
 - L’utilisateur peut accéder aux détails d’une recette :
   - Accéder au nom de la recette,
   - Accéder à l’auteur de la recette,
@@ -55,8 +57,6 @@
   - Accéder aux ingrédients nécessaires à la réalisation de la recette,
   - Accéder aux étapes de préparations de la recette,
   - Accéder aux commentaires que les autres utilisateurs ont laissé sur la recette,
-  
-- Proposition de recettes avec la possibilité de les ranger par catégories (système de tags) afin de faciliter la recherche aux utilisateurs,
 
 - Proposition d'un catalogue d’articles disponible à la vente,
 
@@ -65,13 +65,13 @@
   - Voir les recettes en lien avec cet article,
   - Ajouter une quantité de cet article dans son panier,
   
-- Comporte une page d'accueil contenant une section des recettes les mieux notées mais une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
+- Comporte une page d'accueil contenant une section des recettes les mieux notées mais aussi une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
 
 - Comporte une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
 
 - Comporte une page de suggestions permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
 
-- Comporte une page dite panier permettant à l’utilisateur d’avoir un récapitulatif des articles qui va acheter et de proposer le règlement sécurisé de la commande,
+- Comporte une page dite *panier* permettant à l’utilisateur d’avoir un récapitulatif des articles qu'il va acheter et de proposer le règlement sécurisé de la commande,
 
 - Comporte une page utilisateur afin de :
   - Permettant à un utilisateur de s’inscrire et de créer un compte Nesti,
