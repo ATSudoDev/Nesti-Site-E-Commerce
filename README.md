@@ -8,8 +8,8 @@
 - [Contexte](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte)
 - [Objectif](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)
 - [Éléments significatifs](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-significatifs)
-  - [Sur la partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
-  - [Sur la partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
+  - [Partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
+  - [Partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
 - [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ## Aperçu
@@ -29,7 +29,7 @@
 
 ## Éléments significatifs
 
-### *Sur la partie technique :* 
+### *Partie technique :* 
 
 - Utilisation du framework *CodeIgniter* et du moteur de templates *Twig*,
 - La validation du payement s'effectue que si les informations bancaires renseignées par le client respectent les conditions de l’algorithme de Luhn,
@@ -37,7 +37,7 @@
 - Le site internet comporte un système de panier pour l'achat des articles ainsi qu'un historique de navigation. Les informations du panier et de l'historique de navigation sont enregistrées via le *local storage* du navigateur internet et non via des cookies,
 - Un système de tag (catégorie) ainsi qu'une barre de recherche ont été ajoutés afin de permettre au client de pouvoir trier les recettes ou de chercher directement une recette qu’il souhaiterait réaliser.
 
-### *Sur la partie graphique :* 
+### *Partie graphique :* 
 
 - Chaque recette ou article sont affichés sous forme de carte avec l’essentiel des informations importantes mise en avant,
 - Utilisation d'une palette de couleur que j'ai nommée *mangue-chocolat-menthe* ayant pour but de stimuler l'appétit du visiteur,
