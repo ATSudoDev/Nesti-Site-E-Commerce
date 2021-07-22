@@ -7,6 +7,8 @@
 - [Contexte](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte)
 - [Objectif](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)
 - [Éléments notables](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables)
+  - [Sur la partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
+  - [Sur la partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
 - [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ## IMAGE
