@@ -53,7 +53,8 @@
 - Logiciel : [*FileZilla*](https://filezilla-project.org/)
 - Base de données : [*PHPMyAdmin*](https://www.phpmyadmin.net/)
 
-## 
+## Description fonctionnelle des besoins
+
 - Permettre à l’utilisateur d’accéder aux détails d’une recette :
   - Accéder au nom de la recette,
   - Accéder à l’auteur de la recette,
