@@ -4,10 +4,10 @@
 
 ## INDEX
 
-- [CONTEXTE](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte),
-- [OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet),
-- [ÉLÉMENTS NOTABLES](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables),
-- [OUTILS ET LOGICIELS UTILISÉS](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés).
+- [CONTEXTE](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte)
+- [OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)
+- [ÉLÉMENTS NOTABLES](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables)
+- [OUTILS ET LOGICIELS UTILISÉS](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
 
