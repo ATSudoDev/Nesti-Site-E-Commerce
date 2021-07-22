@@ -5,7 +5,7 @@
 ## INDEX
 - 
 
-- [OBJECTIF DU PROJET] (##OBJECTIF DU PROJET),
+- [OBJECTIF DU PROJET] (https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet),
 - 
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
@@ -18,13 +18,11 @@ L'entreprise Nesti est une entreprise fictive ayant comme objectif de se digital
 
 
 ## OBJECTIF DU PROJET
-- 
 
 L’objectif du projet était de développer une application web simple d’utilisation avec un design attrayant permettant d’accéder à une multitude de recettes détaillées. Le site devait également permettre à la clientèle d’acheter directement et simplement les produits mentionnés dans les recettes via un système e-commerce de commandes sécurisées.
 
 
 ## ÉLÉMENTS NOTABLES
-- 
 
 *Sur la partie technique :* 
 
@@ -41,8 +39,7 @@ L’objectif du projet était de développer une application web simple d’util
 - Chaque recette ou article sont affichés sous forme de carte avec l’essentiel des informations mise en avant à avoir sur la recette à savoir.
 
 
-**OUTILS UTILISÉS**
-- 
+## OUTILS UTILISÉS
 
 - IDE : *Visual Studio Code*,
 - Librairies : *CodeIgniter*, *Twig*;
