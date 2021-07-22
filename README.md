@@ -3,16 +3,16 @@
 [Lien du projet](https://projets.teillieraxel.com/nesti-site-e-commerce/public/)
 
 ## INDEX
-- 
 
-- ([OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)),
-- 
+- [CONTEXTE](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte),
+- [OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet),
+- [ÉLÉMENTS NOTABLES](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables),
+- [OUTILS ET LOGICIELS UTILISÉS](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés).
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
 
 
-
-
+## CONTEXTE
 
 L'entreprise Nesti est une entreprise fictive ayant comme objectif de se digitaliser et ainsi développer un environnement d’e-commerce afin d’agrandir son marché. Pour ce faire, l’entreprise a fait appel à mes services afin d’obtenir un site internet vitrine de type e-shop permettant à ses clients d’accéder à de multiples recettes de desserts et pâtisseries et d’acheter directement des ingrédients et ustensiles qui sont en lien avec ces recettes.
 
@@ -39,7 +39,7 @@ L’objectif du projet était de développer une application web simple d’util
 - Chaque recette ou article sont affichés sous forme de carte avec l’essentiel des informations mise en avant à avoir sur la recette à savoir.
 
 
-## OUTILS UTILISÉS
+## OUTILS ET LOGICIELS UTILISÉS
 
 - IDE : *Visual Studio Code*,
 - Librairies : *CodeIgniter*, *Twig*;
