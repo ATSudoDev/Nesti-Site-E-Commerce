@@ -1,6 +1,9 @@
-# Nesti- Site E-Commerce
+# Nesti - Site E-Commerce
 
 [Lien du projet](https://projets.teillieraxel.com/nesti-site-e-commerce/public/)
+
+
+![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
 
 
 **CONTEXTE**
