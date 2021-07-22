@@ -65,7 +65,7 @@
   - Permettre à l’utilisateur de voir les recettes en lien avec cet article,
   - Permettre à l’utilisateur d’ajouter une quantité de cet article dans son panier,
   
-- Avoir une page accueil avec un historique de navigation c’est-à-dire une section affichant les recettes et articles que l’utilisateur a déjà visionnés,
+- Avoir une page accueil avec un historique de navigation c’est-à-dire une section affichant les recettes que l’utilisateur a déjà visionnés,
 
 - Avoir une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
 
