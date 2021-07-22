@@ -10,8 +10,8 @@
 - [Éléments significatifs](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-significatifs)
   - [Partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
   - [Partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
-- [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 - [Description fonctionnelle des besoins](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#description-fonctionnelle-des-besoins)
+- [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ## Aperçu
 
@@ -44,15 +44,6 @@
 - Utilisation d'une palette de couleur que j'ai nommée *mangue-chocolat-menthe* ayant pour but de stimuler l'appétit du visiteur,
 - Utilisation de la police *Caveat* afin de donner à l’utilisateur la sensation d’accéder à des recettes dites *fait maison* apportant un côté traditionnel au site.
 
-## Outils et logiciels utilisés
-
-- IDE : [*Visual Studio Code*](https://code.visualstudio.com/)
-- Librairies : 
-  - [*CodeIgniter*](https://codeigniter.com/)
-  - [*Twig*](https://twig.symfony.com/)
-- Logiciel : [*FileZilla*](https://filezilla-project.org/)
-- Base de données : [*PHPMyAdmin*](https://www.phpmyadmin.net/)
-
 ## Description fonctionnelle des besoins
 
 - Permettre à l’utilisateur d’accéder aux détails d’une recette :
@@ -64,18 +55,35 @@
   - Accéder aux ingrédients nécessaires à la réalisation de la recette,
   - Accéder aux étapes de préparations de la recette,
   - Accéder aux commentaires que les autres utilisateurs ont laissé sur la recette,
+  
 - Proposer des recettes avec la possibilité de les ranger par catégories (système de tags) afin de faciliter la recherche aux utilisateurs,
+
 - Proposer un catalogue d’articles disponible à la vente,
+
 - Permettre à l’utilisateur d’accéder aux détails d’un article :
   - Accéder au prix de l’article,
   - Permettre à l’utilisateur de voir les recettes en lien avec cet article,
   - Permettre à l’utilisateur d’ajouter une quantité de cet article dans son panier,
+  
 - Avoir une page accueil avec un historique de navigation c’est-à-dire une section affichant les recettes et articles que l’utilisateur a déjà visionnés,
+
 - Avoir une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
+
 - Avoir une page de suggestions permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
+
 - Avoir une page dite panier permettant à l’utilisateur d’avoir un récapitulatif des articles qui va acheter et de proposer le règlement sécurisé de la commande,
+
 - Avoir une page utilisateur afin de :
   - Permettre à un utilisateur de s’inscrire et de créer un compte Nesti,
   - Permettre à un utilisateur de se connecter s’il possède déjà un compte Nesti. S’il est connecté, l’utilisateur doit pouvoir :
     - Noter une recette,
     - Commenter une recette.
+
+## Outils et logiciels utilisés
+
+- IDE : [*Visual Studio Code*](https://code.visualstudio.com/)
+- Librairies : 
+  - [*CodeIgniter*](https://codeigniter.com/)
+  - [*Twig*](https://twig.symfony.com/)
+- Logiciel : [*FileZilla*](https://filezilla-project.org/)
+- Base de données : [*PHPMyAdmin*](https://www.phpmyadmin.net/)
