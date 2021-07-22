@@ -11,7 +11,7 @@
   - [Partie technique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-technique)
   - [Partie graphique](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#sur-la-partie-graphique)
 - [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
-- [Description fonctionnelle des besoins](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
+- [Description fonctionnelle des besoins](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#description-fonctionnelle-des-besoins)
 
 ## Aperçu
 
