@@ -46,7 +46,7 @@
 
 ## Description fonctionnelle
 
-- Permettre à l’utilisateur d’accéder aux détails d’une recette :
+- L’utilisateur peut accéder aux détails d’une recette :
   - Accéder au nom de la recette,
   - Accéder à l’auteur de la recette,
   - Accéder à la note globale de la recette,
@@ -56,28 +56,28 @@
   - Accéder aux étapes de préparations de la recette,
   - Accéder aux commentaires que les autres utilisateurs ont laissé sur la recette,
   
-- Proposer des recettes avec la possibilité de les ranger par catégories (système de tags) afin de faciliter la recherche aux utilisateurs,
+- Proposition de recettes avec la possibilité de les ranger par catégories (système de tags) afin de faciliter la recherche aux utilisateurs,
 
-- Proposer un catalogue d’articles disponible à la vente,
+- Proposition d'un catalogue d’articles disponible à la vente,
 
-- Permettre à l’utilisateur d’accéder aux détails d’un article :
+- L’utilisateur peut accéder aux détails d’un article :
   - Accéder au prix de l’article,
-  - Permettre à l’utilisateur de voir les recettes en lien avec cet article,
-  - Permettre à l’utilisateur d’ajouter une quantité de cet article dans son panier,
+  - Voir les recettes en lien avec cet article,
+  - Ajouter une quantité de cet article dans son panier,
   
-- Avoir une page d'accueil contenant une section des recettes les mieux notées mais une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
+- Comporte une page d'accueil contenant une section des recettes les mieux notées mais une section historique de navigation affichant les recettes que l’utilisateur a déjà visionnés,
 
-- Avoir une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
+- Comporte une barre de recherche afin de permettre à l’utilisateur de trouver rapidement une recette ou un article,
 
-- Avoir une page de suggestions permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
+- Comporte une page de suggestions permettant de proposer une recette à partir d’une liste d’ingrédients choisis par l’utilisateur,
 
-- Avoir une page dite panier permettant à l’utilisateur d’avoir un récapitulatif des articles qui va acheter et de proposer le règlement sécurisé de la commande,
+- Comporte une page dite panier permettant à l’utilisateur d’avoir un récapitulatif des articles qui va acheter et de proposer le règlement sécurisé de la commande,
 
-- Avoir une page utilisateur afin de :
-  - Permettre à un utilisateur de s’inscrire et de créer un compte Nesti,
-  - Permettre à un utilisateur de se connecter s’il possède déjà un compte Nesti. 
+- Comporte une page utilisateur afin de :
+  - Permettant à un utilisateur de s’inscrire et de créer un compte Nesti,
+  - Permettant à un utilisateur de se connecter s’il possède déjà un compte Nesti. 
   
-  S’il est connecté, l’utilisateur doit pouvoir :
+  S’il est connecté, l’utilisateur peut :
     - Noter une recette,
     - Commenter une recette.
 
