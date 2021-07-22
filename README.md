@@ -2,31 +2,31 @@
 
 [Lien du projet](https://projets.teillieraxel.com/nesti-site-e-commerce/public/)
 
-## INDEX
+## Index
 
-- [CONTEXTE](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte)
-- [OBJECTIF DU PROJET](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)
-- [ÉLÉMENTS NOTABLES](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables)
-- [OUTILS ET LOGICIELS UTILISÉS](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
+- [Contexte](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#contexte)
+- [Objectif](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#objectif-du-projet)
+- [Éléments notables](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#éléments-notables)
+- [Outils et logiciels utilisés](https://github.com/Axel-Teillier/Nesti-Site-E-Commerce/blob/master/README.md#outils-et-logiciels-utilisés)
 
 ## IMAGE
 
 ![Image Projet](https://teillieraxel.com/static/media/Nesti%20-%20site%20e-commerce.971e46e6.png)
 
 
-## CONTEXTE
+## Contexte
 
 L'entreprise Nesti est une entreprise fictive ayant comme objectif de se digitaliser et ainsi développer un environnement d’e-commerce afin d’agrandir son marché. Pour ce faire, l’entreprise a fait appel à mes services afin d’obtenir un site internet vitrine de type e-shop permettant à ses clients d’accéder à de multiples recettes de desserts et pâtisseries et d’acheter directement des ingrédients et ustensiles qui sont en lien avec ces recettes.
 
 
-## OBJECTIF DU PROJET
+## Objectif
 
 L’objectif du projet était de développer une application web simple d’utilisation avec un design attrayant permettant d’accéder à une multitude de recettes détaillées. Le site devait également permettre à la clientèle d’acheter directement et simplement les produits mentionnés dans les recettes via un système e-commerce de commandes sécurisées.
 
 
-## ÉLÉMENTS NOTABLES
+## Éléments notables
 
-*Sur la partie technique :* 
+### *Sur la partie technique :* 
 
 - Utilisation du framework *CodeIgniter* et du moteur de templates *Twig*,
 - La validation du payement s'effectue que si les informations bancaires renseignées par le client respectent les conditions de l’algorithme de Luhn,
@@ -34,14 +34,14 @@ L’objectif du projet était de développer une application web simple d’util
 - Le site internet comporte un système de panier pour l'achat des articles ainsi qu'un historique de navigation. Les informations du panier et de l'historique de navigation sont enregistrés via le *local storage* du navigateur internet et non via des cookies,
 - Un système de tag (catégorie) ainsi qu'une barre de recherche ont été ajouté afin de permettre au client de pouvoir trier les recettes ou de chercher directement une recette qu’il souhaiterait réaliser.
 
-*Sur la partie graphique :* 
+### *Sur la partie graphique :* 
 
 - Les pages du site sont *réponsives* avec 3 tailles d'écrans différentes : mobile, tablette et ordinateur,
 - La police *Caveat*, une police de style manuscrite, a été utilisé afin de donner à l’utilisateur la sensation d’accéder à des recettes dites *fait maison* apportant un côté traditionnel au site,
 - Chaque recette ou article sont affichés sous forme de carte avec l’essentiel des informations mise en avant à avoir sur la recette à savoir.
 
 
-## OUTILS ET LOGICIELS UTILISÉS
+## Outils et logiciels utilisés
 
 - IDE : *Visual Studio Code*,
 - Librairies : *CodeIgniter*, *Twig*;
