@@ -1,4 +1,4 @@
-# Nesti - Site E-Commerce
+<h1 align="center"> # Nesti - Site E-Commerce </h1>
 
 [Lien du projet](https://projets.teillieraxel.com/nesti-site-e-commerce/public/)
 
