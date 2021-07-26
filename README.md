@@ -83,9 +83,7 @@
 
 - IDE : [*Visual Studio Code*](https://code.visualstudio.com/)
 - Librairies : 
-  - [*React*](https://fr.reactjs.org/)
-  - [*React Bootstrap*](https://react-bootstrap.github.io/)
-  - [Node JS](https://nodejs.org/en/)
-  - [*Express*](https://expressjs.com/)
-  - [*Axios*](https://axios-http.com/)
-- Base de données : [*AWS S3*](https://aws.amazon.com/fr/s3/)
+  - [*CodeIgniter*](https://codeigniter.com/)
+  - [*Twig*](https://twig.symfony.com/)
+- Logiciel : [*FileZilla*](https://filezilla-project.org/)
+- Base de données : [*PHPMyAdmin*](https://www.phpmyadmin.net/)
